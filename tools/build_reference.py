@@ -261,16 +261,16 @@ def run_checks(solid):
     gaps = {}
     for k, (x, y) in enumerate(D.THRU_HOLES, 1):
         c = Point(x, y).buffer(D.THRU_D / 2, 64)
-        gaps['through hole %d - part edge' % k] = c.distance(LineString(edges.coords))
-        gaps['through hole %d - island' % k] = c.distance(island_poly)
-        gaps['through hole %d - pocket' % k] = c.distance(pocket_poly)
-        gaps['through hole %d - recess' % k] = c.distance(rpoly)
+        gaps['through hole %d to part edge' % k] = c.distance(LineString(edges.coords))
+        gaps['through hole %d to island' % k] = c.distance(island_poly)
+        gaps['through hole %d to pocket' % k] = c.distance(pocket_poly)
+        gaps['through hole %d to recess' % k] = c.distance(rpoly)
     for k, (x, y) in enumerate(D.BLIND_HOLES, 1):
         c = Point(x, y).buffer(D.BLIND_D / 2, 64)
-        gaps['blind hole %d - island edge' % k] = c.distance(LineString(island_poly.exterior.coords))
-    gaps['pocket - island'] = pocket_poly.distance(island_poly)
-    gaps['pocket - part edge'] = pocket_poly.distance(LineString(edges.coords))
-    gaps['island - recess'] = island_poly.distance(rpoly)
+        gaps['blind hole %d to island edge' % k] = c.distance(LineString(island_poly.exterior.coords))
+    gaps['pocket to island'] = pocket_poly.distance(island_poly)
+    gaps['pocket to part edge'] = pocket_poly.distance(LineString(edges.coords))
+    gaps['island to recess'] = island_poly.distance(rpoly)
     worst = min(gaps, key=gaps.get)
     add('Process', 'Walls between features >= 3 mm', 'thinnest: %s %.2f mm' % (worst, gaps[worst]), gaps[worst] >= 3)
 

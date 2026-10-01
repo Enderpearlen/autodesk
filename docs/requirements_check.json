@@ -141,7 +141,7 @@
     {
       "group": "Process",
       "requirement": "Walls between features >= 3 mm",
-      "value": "thinnest: blind hole 1 - island edge 3.40 mm",
+      "value": "thinnest: blind hole 1 to island edge 3.40 mm",
       "ok": true
     }
   ],
@@ -155,24 +155,24 @@
     "drill_point_mm": 1.8025818570826808,
     "blind_depth_limit_mm": 15.812500000000002,
     "gaps_mm": {
-      "through hole 1 - part edge": 8.0,
-      "through hole 1 - island": 13.206697860890914,
-      "through hole 1 - pocket": 11.0,
-      "through hole 1 - recess": 5.0,
-      "through hole 2 - part edge": 5.0,
-      "through hole 2 - island": 9.279002150270088,
-      "through hole 2 - pocket": 42.09207603332431,
-      "through hole 2 - recess": 56.0,
-      "through hole 3 - part edge": 6.0,
-      "through hole 3 - island": 5.0556861299585085,
-      "through hole 3 - pocket": 14.21335379645597,
-      "through hole 3 - recess": 47.97335877324912,
-      "blind hole 1 - island edge": 3.4019790511520416,
-      "blind hole 2 - island edge": 4.778174593052018,
-      "blind hole 3 - island edge": 7.6016785091393695,
-      "pocket - island": 7.0,
-      "pocket - part edge": 6.0,
-      "island - recess": 11.999999999999998
+      "through hole 1 to part edge": 8.0,
+      "through hole 1 to island": 13.206697860890914,
+      "through hole 1 to pocket": 11.0,
+      "through hole 1 to recess": 5.0,
+      "through hole 2 to part edge": 5.0,
+      "through hole 2 to island": 9.279002150270088,
+      "through hole 2 to pocket": 42.09207603332431,
+      "through hole 2 to recess": 56.0,
+      "through hole 3 to part edge": 6.0,
+      "through hole 3 to island": 5.0556861299585085,
+      "through hole 3 to pocket": 14.21335379645597,
+      "through hole 3 to recess": 47.97335877324912,
+      "blind hole 1 to island edge": 3.4019790511520416,
+      "blind hole 2 to island edge": 4.778174593052018,
+      "blind hole 3 to island edge": 7.6016785091393695,
+      "pocket to island": 7.0,
+      "pocket to part edge": 6.0,
+      "island to recess": 11.999999999999998
     }
   }
 }

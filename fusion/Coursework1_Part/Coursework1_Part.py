@@ -1,4 +1,4 @@
-"""Coursework 1 - Design of a part for manufacturing on a milling machine.
+"""Coursework 1: design of a part for manufacturing on a milling machine.
 
 Computer Aided Manufacturing Workshop, ETSIDI-UPM.
 
@@ -262,7 +262,7 @@ def _holes(root, body, name, centers, z, dia, depth, warnings):
     """Simple drilled holes on the face at height z. depth None = through all."""
     face = _face_at(root, centers[0][0], centers[0][1], z)
     sk = root.sketches.add(face)
-    sk.name = name + ' - centres'
+    sk.name = name + ' centres'
     pts = adsk.core.ObjectCollection.create()
     for x, y in centers:
         pts.add(sk.sketchPoints.add(sk.modelToSketchSpace(_p3(x, y, z))))
@@ -297,7 +297,10 @@ def _holes(root, body, name, centers, z, dia, depth, warnings):
 def build(app):
     warnings = []
     doc = app.documents.add(adsk.core.DocumentTypes.FusionDesignDocumentType)
-    doc.name = 'Coursework1_Part'
+    try:
+        doc.name = 'Coursework1_Part'
+    except Exception:
+        pass   # an unsaved document may refuse a new name; it is set on save
     design = adsk.fusion.Design.cast(app.activeProduct)
     design.designType = adsk.fusion.DesignTypes.ParametricDesignType
     design.fusionUnitsManager.distanceDisplayUnits = adsk.fusion.DistanceUnits.MillimeterDistanceUnits
@@ -312,7 +315,7 @@ def build(app):
     try:
         step = 'Base plate'
         sk = sketches.add(root.xYConstructionPlane)
-        sk.name = 'Base plate - outline'
+        sk.name = 'Base plate outline'
         sk.sketchCurves.sketchLines.addTwoPointRectangle(_p3(0, 0, 0), _p3(STOCK[0], STOCK[1], 0))
         feat = extrudes.addSimple(_profile(sk, STOCK[0] * STOCK[1]), _vi('%g mm' % PLATE_T), new_body)
         feat.name = 'Base plate'
@@ -328,7 +331,7 @@ def build(app):
         step = 'Island'
         segs = island_segments()
         sk = sketches.add(plate_plane)
-        sk.name = 'Island - outline'
+        sk.name = 'Island outline'
         _draw_loop(sk, segs, PLATE_T)
         prof = _profile(sk, polygon_area(loop_polygon(segs)))
         feat = extrudes.addSimple(prof, _vi('%g mm' % ISLAND_H), join)
@@ -337,7 +340,7 @@ def build(app):
         step = 'Island chamfer'
         tri = chamfer_triangle_yz()
         sk = sketches.add(root.yZConstructionPlane)
-        sk.name = 'Island chamfer - section'
+        sk.name = 'Island chamfer section'
         lines = sk.sketchCurves.sketchLines
         p = [sk.modelToSketchSpace(_p3(0, y, z)) for y, z in tri]
         l1 = lines.addByTwoPoints(p[0], p[1])
@@ -360,7 +363,7 @@ def build(app):
         step = 'Rectangular pocket'
         segs = pocket_segments()
         sk = sketches.add(plate_plane)
-        sk.name = 'Pocket - outline'
+        sk.name = 'Pocket outline'
         _draw_loop(sk, segs, PLATE_T)
         feat = extrudes.addSimple(_profile(sk, polygon_area(loop_polygon(segs))),
                                   _vi('-%g mm' % POCKET_DEPTH), cut)
@@ -369,7 +372,7 @@ def build(app):
         step = 'Side recess'
         segs = recess_segments()
         sk = sketches.add(plate_plane)
-        sk.name = 'Side recess - outline'
+        sk.name = 'Side recess outline'
         _draw_loop(sk, segs, PLATE_T)
         feat = extrudes.addSimple(_profile(sk, polygon_area(loop_polygon(segs))),
                                   _vi('-%g mm' % RECESS_DEPTH), cut)
@@ -377,7 +380,7 @@ def build(app):
 
         step = 'Stock'
         sk = sketches.add(root.xYConstructionPlane)
-        sk.name = 'Stock - outline'
+        sk.name = 'Stock outline'
         sk.sketchCurves.sketchLines.addTwoPointRectangle(_p3(0, 0, 0), _p3(STOCK[0], STOCK[1], 0))
         feat = extrudes.addSimple(_profile(sk, STOCK[0] * STOCK[1]), _vi('%g mm' % STOCK[2]), new_body)
         feat.name = 'Stock %gx%gx%g (for CAM)' % STOCK
