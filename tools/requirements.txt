@@ -1,0 +1,6 @@
+cadquery>=2.4
+shapely>=2.0
+numpy
+pillow
+matplotlib
+reportlab

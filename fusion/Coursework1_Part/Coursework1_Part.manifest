@@ -1,0 +1,10 @@
+{
+	"autodeskProduct":	"Fusion360",
+	"type":	"script",
+	"author":	"Jarno",
+	"description":	{
+		"":	"Coursework 1 (CAM Workshop ETSIDI-UPM): builds the milling part with island, chamfer, holes, pocket and side recess."
+	},
+	"supportedOS":	"windows|mac",
+	"editEnabled":	true
+}

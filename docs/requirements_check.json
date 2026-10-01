@@ -1,0 +1,178 @@
+{
+  "checks": [
+    {
+      "group": "Dimensions",
+      "requirement": "Length X = 85 mm, width Y = 75 mm (stock size)",
+      "value": "85.00 x 75.00 mm",
+      "ok": true
+    },
+    {
+      "group": "Dimensions",
+      "requirement": "Part height = 30 - 1.25 = 28.75 mm",
+      "value": "28.75 mm",
+      "ok": true
+    },
+    {
+      "group": "Island",
+      "requirement": "At least 11 segments",
+      "value": "20 segments",
+      "ok": true
+    },
+    {
+      "group": "Island",
+      "requirement": "At least 5 arcs, radius 2-15 mm",
+      "value": "9 arcs, R3-R8",
+      "ok": true
+    },
+    {
+      "group": "Island",
+      "requirement": "Straight segments parallel to X and to Y",
+      "value": "4 along X, 5 along Y",
+      "ok": true
+    },
+    {
+      "group": "Island",
+      "requirement": "Oblique segments",
+      "value": "2 oblique (45 deg)",
+      "ok": true
+    },
+    {
+      "group": "Island",
+      "requirement": "Two arcs tangent to oblique segments",
+      "value": "4 arcs tangent",
+      "ok": true
+    },
+    {
+      "group": "Island",
+      "requirement": "Island height 12-15 mm",
+      "value": "13 mm",
+      "ok": true
+    },
+    {
+      "group": "Island",
+      "requirement": "Area (excluding chamfer) 900-1500 mm2",
+      "value": "outline 1133, top face 1084 (without chamfer strip 48), top face incl. holes 999 mm2",
+      "ok": true
+    },
+    {
+      "group": "Chamfer",
+      "requirement": "On a straight segment between two perpendicular straight segments",
+      "value": "edge G-H (14 mm), neighbours F-G and H-I",
+      "ok": true
+    },
+    {
+      "group": "Chamfer",
+      "requirement": "Depth 4-9 mm, angle to XY 50-80 deg",
+      "value": "depth 6.00 mm, angle 60.0 deg, width 3.46 mm",
+      "ok": true
+    },
+    {
+      "group": "Pocket",
+      "requirement": "Depth 11-14 mm (IT7)",
+      "value": "12 mm, floor at Z=3.75 (1 face)",
+      "ok": true
+    },
+    {
+      "group": "Pocket",
+      "requirement": "Long side 22-27 mm, short side 10-17 mm (IT8)",
+      "value": "25 x 14 mm, corners R3",
+      "ok": true
+    },
+    {
+      "group": "Side recess",
+      "requirement": "Depth 7-13 mm",
+      "value": "8 mm",
+      "ok": true
+    },
+    {
+      "group": "Side recess",
+      "requirement": "Open on two lateral faces",
+      "value": "front face Y=0 and back face Y=75",
+      "ok": true
+    },
+    {
+      "group": "Side recess",
+      "requirement": "Profile >= 6 segments, >= 3 arcs R2-R5",
+      "value": "10 wall segments + 2 open edges, 4 arcs R4",
+      "ok": true
+    },
+    {
+      "group": "Side recess",
+      "requirement": "Area >= 400 mm2",
+      "value": "outline 798 mm2, floor face 798 mm2",
+      "ok": true
+    },
+    {
+      "group": "Blind holes",
+      "requirement": "3 holes, max D7, depth <= 55% of drilling plane to base",
+      "value": "3x D6, depth 10 + point 1.80 = 11.80 mm <= 15.81 mm",
+      "ok": true
+    },
+    {
+      "group": "Through holes",
+      "requirement": "3 holes, max D8, through the part",
+      "value": "3x D8, length 15.75 mm",
+      "ok": true
+    },
+    {
+      "group": "Process",
+      "requirement": "Smallest drill D5",
+      "value": "drills D6 and D8",
+      "ok": true
+    },
+    {
+      "group": "Process",
+      "requirement": "Inside radii >= 2 mm (end mill >= D4)",
+      "value": "smallest inside radius R3",
+      "ok": true
+    },
+    {
+      "group": "Process",
+      "requirement": "Recess channel wide enough for end mill",
+      "value": "channel 8 mm",
+      "ok": true
+    },
+    {
+      "group": "Process",
+      "requirement": "Single clamping: no face points downward except the base",
+      "value": "0 undercut faces",
+      "ok": true
+    },
+    {
+      "group": "Process",
+      "requirement": "Walls between features >= 3 mm",
+      "value": "thinnest: blind hole 1 - island edge 3.40 mm",
+      "ok": true
+    }
+  ],
+  "data": {
+    "volume_mm3": 101217.73405106181,
+    "island_footprint_mm2": 1132.5068132327515,
+    "island_top_face_mm2": 999.180282613901,
+    "chamfer_strip_mm2": 48.49742261192858,
+    "recess_area_mm2": 797.999999999999,
+    "pocket_area_mm2": 342.2730722505687,
+    "drill_point_mm": 1.8025818570826808,
+    "blind_depth_limit_mm": 15.812500000000002,
+    "gaps_mm": {
+      "through hole 1 - part edge": 8.0,
+      "through hole 1 - island": 13.206697860890914,
+      "through hole 1 - pocket": 11.0,
+      "through hole 1 - recess": 5.0,
+      "through hole 2 - part edge": 5.0,
+      "through hole 2 - island": 9.279002150270088,
+      "through hole 2 - pocket": 42.09207603332431,
+      "through hole 2 - recess": 56.0,
+      "through hole 3 - part edge": 6.0,
+      "through hole 3 - island": 5.0556861299585085,
+      "through hole 3 - pocket": 14.21335379645597,
+      "through hole 3 - recess": 47.97335877324912,
+      "blind hole 1 - island edge": 3.4019790511520416,
+      "blind hole 2 - island edge": 4.778174593052018,
+      "blind hole 3 - island edge": 7.6016785091393695,
+      "pocket - island": 7.0,
+      "pocket - part edge": 6.0,
+      "island - recess": 11.999999999999998
+    }
+  }
+}
