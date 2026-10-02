@@ -81,7 +81,7 @@ export const nav = {
 export const ageGateExempt = ['/18-plus', '/leeftijd-nee', '/juridisch', '/stijlgids'];
 
 /** Volgorde van de secties op de homepage. Haal een regel weg of verplaats hem. */
-export const homeSections = ['hero', 'claims', 'product', 'quote', 'story', 'reviews', 'where', 'community', 'newsletter'] as const;
+export const homeSections = ['hero', 'claims', 'flavours', 'quote', 'story', 'reviews', 'where', 'community', 'newsletter'] as const;
 
 /**
  * Actiebar onder de header, bijvoorbeeld voor een actie of feestdag. Zet `enabled` op false om hem weg te halen.

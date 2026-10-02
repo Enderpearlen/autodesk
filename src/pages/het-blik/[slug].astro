@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
+import Rich from '../../components/Rich.astro';
+import { copy } from '../../content/copy.nl';
+import { brand } from '../../config/site';
+import { can } from '../../config/visuals';
+import { products, bySlug } from '../../content/products';
+
+export function getStaticPaths() {
+  return products.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const item = bySlug(Astro.params.slug!)!;
+const p = copy.pages.product;
+const others = products.filter((o) => o.id !== item.id);
+const site = Astro.site ?? new URL('https://www.mando-drinks.example');
+const ld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: `${brand.name} ${item.name}`,
+    description: `${brand.name} ${item.name}: ${item.descriptor.toLowerCase()} in een slank blik van ${brand.volume}.`,
+    brand: { '@type': 'Brand', name: brand.name },
+    image: item.images.map((i) => new URL(i.src, site).href),
+  },
+];
+const stripX = (t: string) => t.replace(/\[X:[^\]]*\]/g, '').replace(/\s+([.,])/g, '$1').trim();
+---
+
+<Base title={item.name} description={stripX(`${brand.name} ${item.name}: ${item.tagline} Slank blik van ${brand.volume}.`)} jsonLd={ld}>
+  <PageHeader tone="mosterd" title={item.name} />
+  <section class="section paper">
+    <div class="container split split--wide-left">
+      <div data-reveal><ProductGallery images={item.images} /></div>
+      <div class="stack" data-reveal style="--d:.1s">
+        <div class="lead-row">
+          <p class="lead"><Rich text={item.tagline} /></p>
+          <img class="lead-sketch themed" data-for="creme mosterd terra" src={can.sketchDark.src} width={can.sketchDark.w} height={can.sketchDark.h} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+          <img class="lead-sketch themed" data-for="nacht" src={can.sketchLight.src} width={can.sketchLight.w} height={can.sketchLight.h} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        </div>
+        <dl class="facts">
+          {item.facts.map((f) => (<><dt>{f.k}</dt><dd><Rich text={f.v} /></dd></>))}
+        </dl>
+        <h2 style="font-size:1.6rem">{p.serving}</h2>
+        <p><Rich text={p.servingText} /></p>
+        <h2 style="font-size:1.6rem">{p.allergens}</h2>
+        <p><Rich text={p.allergensText} /></p>
+        <p style="font-weight:700">{p.warning}</p>
+        <div class="btn-row">
+          <a class="btn" href="/waar-te-koop">{copy.product.ctaWhere}</a>
+          <a class="btn btn--ghost" href="/faq">{copy.pages.faq.title}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section paper others">
+    <div class="container">
+      <h2 data-reveal>{copy.pages.range.others}</h2>
+      <ul class="range-mini">
+        {others.map((o) => (
+          <li data-reveal>
+            <a href={`/het-blik/${o.slug}`}>
+              <img src={o.can.src} width={o.can.w} height={o.can.h} alt="" loading="lazy" decoding="async" />
+              <span>{o.name}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>

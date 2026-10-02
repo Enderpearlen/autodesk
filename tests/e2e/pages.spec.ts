@@ -4,7 +4,7 @@ import { skipOverlays, settle } from './helpers';
 test.beforeEach(async ({ context }) => { await skipOverlays(context); });
 
 test('productgalerij: miniatuur wisselt het hoofdbeeld', async ({ page }) => {
-  await page.goto('/het-blik');
+  await page.goto('/het-blik/amaretto-cola');
   const main = page.locator('[data-gallery-main]');
   const before = await main.getAttribute('src');
   const thumbs = page.locator('.thumb');

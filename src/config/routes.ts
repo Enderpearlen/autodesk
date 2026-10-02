@@ -1,9 +1,11 @@
 import { legalPages } from '../content/legal';
+import { products } from '../content/products';
 
 /** Routes voor de sitemap. Nieuwe pagina? Voeg hem hier toe. */
 export const routes: { path: string; priority: number }[] = [
   { path: '/', priority: 1 },
   { path: '/het-blik', priority: 0.9 },
+  ...products.map((p) => ({ path: `/het-blik/${p.slug}`, priority: 0.8 })),
   { path: '/verhaal', priority: 0.8 },
   { path: '/waar-te-koop', priority: 0.9 },
   { path: '/community', priority: 0.6 },

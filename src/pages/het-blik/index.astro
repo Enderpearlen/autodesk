@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Rich from '../../components/Rich.astro';
+import { copy } from '../../content/copy.nl';
+import { brand } from '../../config/site';
+import { lineup } from '../../config/visuals';
+import { products } from '../../content/products';
+
+const r = copy.pages.range;
+const site = Astro.site ?? new URL('https://www.mando-drinks.example');
+const ld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `${brand.name} smaken`,
+    itemListElement: products.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: `${brand.name} ${p.name}`, url: new URL(`/het-blik/${p.slug}`, site).href })),
+  },
+];
+---
+
+<Base title={r.title} description={r.description} jsonLd={ld}>
+  <PageHeader tone="mosterd" title={r.title} />
+  <section class="section paper">
+    <div class="container">
+      <p class="lead" data-reveal>{r.lead}</p>
+      <div class="frame range-frame" data-reveal>
+        <img src={lineup.src} width={lineup.w} height={lineup.h} alt={lineup.alt} loading="eager" decoding="async" />
+      </div>
+      <ul class="range" style="margin-top:3rem">
+        {products.map((p, i) => (
+          <li class="range-item" data-reveal style={`--d:${i * 0.06}s;--accent-flavour:${p.accent}`}>
+            <a class="range-can" href={`/het-blik/${p.slug}`} tabindex="-1" aria-hidden="true">
+              <img src={p.can.src} width={p.can.w} height={p.can.h} alt="" loading="lazy" decoding="async" />
+            </a>
+            <div class="stack">
+              <h2>{p.name}</h2>
+              <p class="lead"><Rich text={p.tagline} /></p>
+              <p class="muted"><Rich text={`${p.facts[0].v}, ${p.facts[1].v}`} /></p>
+              <a class="btn btn--small" href={`/het-blik/${p.slug}`}>{r.view} {p.short}</a>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>

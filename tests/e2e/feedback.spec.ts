@@ -65,7 +65,7 @@ test('homepage: quote, voorbeeldreviews en geen ingrediëntenlijst', async ({ pa
   for (let i = 0; i < 3; i++) await expect(reviews.nth(i).locator('.review-tag')).toHaveText('Voorbeeldreview');
   await expect(reviews.first().locator('.stars')).toHaveAttribute('aria-label', /5 van 5 sterren/);
   expect(await page.locator('main').innerText()).not.toMatch(/Ingrediënten/i);
-  await page.goto('/het-blik');
+  await page.goto('/het-blik/amaretto-cola');
   expect(await page.locator('main').innerText()).toMatch(/Ingrediënten/i);
 });
 

@@ -66,4 +66,6 @@ De onderrand van de footers is één egale kleur over de onderste ongeveer 15 pr
 
 ## Status
 
-Alles is lokaal gebouwd in dezelfde stijl. Het blik komt uit één bron van 1280×720 en is opgeschaald, dus iets zacht. Nog te vervangen of te maken met de beeldgenerator: rijkere achtergronden, een scherper blik (2K), een stilleven met amandelen en ijs, en een macro van de bovenkant van het blik.
+Versie 2. Het blik komt uit Jarno's eigen ontwerp (screenshot van 662 px), met Topaz tot 1324 px opgeschaald en lokaal schoon uitgeknipt. De smaken (cassis, cola zero, ice tea) zijn digitale herkleuringen van dat blik met een nieuw etiketopschrift, een gouden kader en de zijkanttekst "Bevat geen noten, alleen amandelsmaak" (nog te bevestigen met etiket en leverancier). Het merkteken (amandel) is een schone hertekening van het amandelpatroon op het blik. Het houten vat en de aardewerken pot zijn eigen tekeningen in dezelfde vlakke stijl. Product, deelafbeelding, leeftijdscontrole en 404 hebben een gouden dubbele binnenlijn.
+
+Nog te doen met de beeldgenerator of fotografie: echte productfoto's per smaak, een rijkere set achtergronden en een macro van de bovenkant van het blik.

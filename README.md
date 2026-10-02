@@ -25,6 +25,8 @@ Node 22 of nieuwer. Er is geen server nodig: `dist/` kan naar elke statische hos
 | Alle teksten (Nederlands) | `src/content/copy.nl.ts` |
 | Veelgestelde vragen | `src/content/faq.ts` |
 | Verkooppunten | `src/content/stores.ts` |
+| Smaken (namen, teksten, feiten, beelden per smaak) | `src/content/products.ts` |
+| Voorbeeldreviews op de homepage | `src/content/reviews.ts` |
 | Juridische teksten (privacy, cookies, voorwaarden, disclaimer, colofon) | `src/content/legal.ts` |
 | Routes voor de sitemap | `src/config/routes.ts` |
 | Stijl | `src/styles/global.css` |
@@ -49,6 +51,14 @@ Valt de berekening uit, dan geldt een vast uurschema. Bezoekers kunnen in de hea
 ## Een sectie of pagina toevoegen
 
 De startpagina volgt de lijst `homeSections` in `src/config/site.ts`. Een sectie verplaatsen of weghalen is een regel aanpassen. Een nieuwe sectie maak je als component in `src/components/` en voeg je toe aan die lijst en aan `src/pages/index.astro`. Een nieuwe pagina is een bestand in `src/pages/`, met `Base` als layout en `PageHeader` als kop. Zet hem ook in `src/config/routes.ts` en, als hij in het menu moet, in `nav` in `src/config/site.ts`.
+
+## Actiebar, quote en reviews
+
+Onder de header kan een actiebar staan, bijvoorbeeld voor een actie of feestdag. Hij staat in `announcement` in `src/config/site.ts`: tekst, link, `from` en `until` (JJJJ-MM-DD) en of bezoekers hem kunnen sluiten. Zet `enabled` op `false` om hem weg te halen. Wijzig `id` bij een nieuwe actie, dan komt hij terug bij bezoekers die de vorige sloten. De quote en de reviews zijn secties van de startpagina (`homeSections`). De reviews zijn voorbeelden met een zichtbare markering. Vervang ze na de lancering door echte reviews en zet `placeholder` op `false`. `npm run check:live` faalt zolang er voorbeeldreviews staan.
+
+## Smaken
+
+Er zijn vier smaken: Amaretto Cola, Cassis, Cola Zero en Ice Tea. Ze staan in `src/content/products.ts` en krijgen elk een eigen pagina op `/het-blik/<naam>`. Alcoholpercentage, ingrediënten, voedingswaarde en allergenen van de nieuwe smaken zijn nog `[X]`. De beelden per smaak staan in `src/config/visuals.ts` (`can` en `product`).
 
 ## Instagram en TikTok
 

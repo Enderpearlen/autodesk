@@ -11,7 +11,7 @@ export async function skipOverlays(context: BrowserContext, consent = { stats: f
 }
 
 export const routes = [
-  '/', '/het-blik', '/verhaal', '/waar-te-koop', '/community', '/faq', '/contact', '/18-plus', '/leeftijd-nee',
+  '/', '/het-blik', '/het-blik/amaretto-cola', '/het-blik/amaretto-cassis', '/het-blik/amaretto-cola-zero', '/het-blik/amaretto-ice-tea', '/verhaal', '/waar-te-koop', '/community', '/faq', '/contact', '/18-plus', '/leeftijd-nee',
   '/juridisch/privacy', '/juridisch/cookies', '/juridisch/voorwaarden', '/juridisch/disclaimer', '/juridisch/colofon', '/stijlgids',
 ];
 

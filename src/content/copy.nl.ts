@@ -18,6 +18,14 @@ export const copy = {
     close: 'Sluit mededeling',
   },
 
+  flavours: {
+    kicker: 'De smaken',
+    title: 'Vier smaken, één blik',
+    text: 'Amaretto met cola, cassis, cola zero of ice tea. Dezelfde slanke blikken van 250 ml, elk met een eigen kleur en dezelfde amandel.',
+    cta: 'Bekijk alle smaken',
+    linkLabel: 'Bekijk',
+  },
+
   quote: {
     text: 'Van en voor de echte genieters',
   },
@@ -116,6 +124,13 @@ export const copy = {
   },
 
   pages: {
+    range: {
+      title: 'Het blik',
+      description: `Mando amaretto in vier smaken: cola, cassis, cola zero en ice tea. Allemaal in een slank blik van ${brand.volume}.`,
+      lead: `Vier smaken, allemaal in een slank blik van ${brand.volume}.`,
+      view: 'Bekijk',
+      others: 'Ook van Mando',
+    },
     product: {
       title: 'Het blik',
       description: `${brand.product}: amaretto cola in een slank blik van ${brand.volume}, ${brand.abv}.`,

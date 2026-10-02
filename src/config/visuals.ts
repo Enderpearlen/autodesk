@@ -41,8 +41,11 @@ export const heroCan = {
 };
 
 export const can = {
-  tilt: img('cutouts/blik-gekanteld.webp', 528, 1100, 'Mando amaretto cola blik, 250 ml', 'Hero, blik als los element'),
-  upright: img('cutouts/blik-rechtop.webp', 419, 1108, 'Mando amaretto cola blik, rechtop', 'Stijlgids, bijvoorbeeld voor een tweede sectie'),
+  tilt: img('cutouts/blik-gekanteld.webp', 527, 984, 'Mando amaretto cola blik, 250 ml', 'Hero, blik als los element'),
+  upright: img('cutouts/blik-rechtop.webp', 373, 989, 'Mando amaretto cola blik, rechtop', 'Smaken en productpagina, Amaretto Cola'),
+  cassis: img('cutouts/blik-cassis.webp', 373, 989, 'Mando amaretto cassis blik, rechtop', 'Smaken en productpagina, Amaretto Cassis'),
+  zero: img('cutouts/blik-zero.webp', 373, 989, 'Mando amaretto cola zero blik, rechtop', 'Smaken en productpagina, Amaretto Cola Zero'),
+  icetea: img('cutouts/blik-icetea.webp', 373, 989, 'Mando amaretto ice tea blik, rechtop', 'Smaken en productpagina, Amaretto Ice Tea'),
   sketchDark: img('cutouts/lijnschets-espresso.webp', 534, 1100, '', 'Het blik en Verhaal, lijnschets'),
   sketchLight: img('cutouts/lijnschets-creme.webp', 534, 1100, '', 'Het blik, lijnschets op donker'),
 };
@@ -54,7 +57,13 @@ export const product = {
   terra: img('composities/product-terra.webp', 1600, 2000, 'Mando blik met een lijnschets voor een gele zon op terracotta', 'Home en Het blik'),
   nacht: img('composities/product-nacht.webp', 1600, 2000, 'Mando blik voor een gele maan op een donkere achtergrond', 'Home en Het blik'),
   olijf: img('composities/product-olijf.webp', 1600, 2000, 'Mando blik voor een crème zon op een olijfgroene achtergrond', 'Het blik, galerij'),
+  cassis: img('composities/product-cassis.webp', 1600, 2000, 'Mando Amaretto Cassis blik voor een gele zon op een pruimkleurige achtergrond', 'Productpagina Amaretto Cassis'),
+  zero: img('composities/product-zero.webp', 1600, 2000, 'Mando Amaretto Cola Zero blik voor een crème zon op een donkergrijze achtergrond', 'Productpagina Amaretto Cola Zero'),
+  icetea: img('composities/product-icetea.webp', 1600, 2000, 'Mando Amaretto Ice Tea blik voor een gele zon op een lichtgroene achtergrond', 'Productpagina Amaretto Ice Tea'),
 };
+
+/** Alle vier de smaken naast elkaar, voor de homepage en het overzicht. */
+export const lineup = img('composities/lineup-smaken.webp', 2560, 1100, 'Vier Mando blikken naast elkaar: cola, cassis, cola zero en ice tea, tussen een houten vat en een aardewerken pot', 'Home (smaken) en Het blik (overzicht)');
 export const productOrder: (keyof typeof product)[] = ['mosterd', 'terra', 'creme', 'nacht', 'olijf'];
 
 export const banner = {
@@ -107,6 +116,8 @@ export const stickers = {
   cipres: img('stickers/cipres.webp', 600, 600, '', 'Verhaal, Waar te koop'),
   boom: img('stickers/amandelboom.webp', 600, 600, '', 'Verhaal, Community'),
   embleem: img('stickers/embleem.webp', 600, 600, '', 'Leeftijdscontrole, footer, Contact'),
+  vat: img('stickers/vat.webp', 600, 600, '', 'Home (smaken), Verhaal'),
+  pot: img('stickers/pot.webp', 600, 600, '', 'Home (smaken), Het blik'),
 };
 
 export const logo = {
@@ -124,7 +135,7 @@ export const catalogue: { group: string; items: Img[] }[] = [
   { group: 'Hero achtergronden', items: themeIds.flatMap((t) => [heroBg[t].desktop, heroBg[t].mobile]) },
   { group: 'Blik en schetsen', items: Object.values(can) },
   { group: 'Productbeelden', items: Object.values(product) },
-  { group: 'Banner en verhaal', items: [banner.composite, banner.bg, story] },
+  { group: 'Banner en verhaal', items: [banner.composite, banner.bg, story, lineup] },
   { group: 'Paginakoppen', items: Object.values(pageHeader) },
   { group: 'Footers', items: Object.values(footer) },
   { group: 'Leeftijdscontrole en 404', items: [ageGate.desktop, ageGate.mobile, notFound.desktop, notFound.mobile] },
