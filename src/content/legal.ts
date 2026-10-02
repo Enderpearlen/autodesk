@@ -3,7 +3,7 @@
  * Laat ze nalopen door een bevoegde persoon voordat de site live gaat (AVG, cookiewet, Alcoholwet,
  * Reclamecode voor Alcoholhoudende Dranken, consumentenrecht bij een eventuele webshop).
  */
-import { X, brand, company } from '../../config/site';
+import { X, brand, company } from '../config/site';
 
 export type Section = {
   h: string;

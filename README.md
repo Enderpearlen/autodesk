@@ -25,7 +25,7 @@ Node 22 of nieuwer. Er is geen server nodig: `dist/` kan naar elke statische hos
 | Alle teksten (Nederlands) | `src/content/copy.nl.ts` |
 | Veelgestelde vragen | `src/content/faq.ts` |
 | Verkooppunten | `src/content/stores.ts` |
-| Juridische teksten (privacy, cookies, voorwaarden, disclaimer, colofon) | `src/content/legal/legal.ts` |
+| Juridische teksten (privacy, cookies, voorwaarden, disclaimer, colofon) | `src/content/legal.ts` |
 | Routes voor de sitemap | `src/config/routes.ts` |
 | Stijl | `src/styles/global.css` |
 
@@ -87,7 +87,9 @@ De e2e-tests draaien op desktop (1440 bij 900) en op een telefoon. Ze bouwen de 
 
 ## Online zetten en delen
 
-De site is statisch en gaat uit van de hoofdmap van een domein. Een host die de repo koppelt en bij elke push opnieuw bouwt is daarom het makkelijkst, en iedereen opent dan gewoon één link. Voorbeeld met Netlify (gratis):
+**Nu live op Render.** De site draait als statische site (gratis) op https://mando-drinks.onrender.com, gebouwd uit de branch `claude/dazzling-tesla-s5doo9` van deze repo. Instellingen: bouwopdracht `npm ci && npm run build`, uitvoermap `dist`, automatisch opnieuw bouwen bij elke push, en de omgevingsvariabelen `NODE_VERSION=22`, `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` en `SITE_URL=https://mando-drinks.onrender.com`. Beheer gaat via het Render-dashboard (dashboard.render.com, service `mando-drinks`). Wordt de hoofdbranch `main`, pas dan de branch aan onder Settings van de service.
+
+Hieronder staan de andere mogelijkheden. De site is statisch en gaat uit van de hoofdmap van een domein. Een host die de repo koppelt en bij elke push opnieuw bouwt is daarom het makkelijkst, en iedereen opent dan gewoon één link. Voorbeeld met Netlify (gratis):
 
 1. Maak een account op netlify.com en kies "Add new site", dan "Import an existing project" en GitHub.
 2. Kies de repo `autodesk` en de branch die je wilt tonen. De instellingen komen uit `netlify.toml` (bouwopdracht `npm run build`, map `dist`, Node 22).
@@ -106,7 +108,7 @@ Zolang `features.indexable` op `false` staat, staat de site voor zoekmachines di
 1. Vul alle placeholders in en draai `npm run check:live` tot hij slaagt.
 2. Zet `features.indexable` op `true` in `src/config/site.ts`. Zolang hij op `false` staat, hebben alle pagina's `noindex` en blokkeert `robots.txt` zoekmachines.
 3. Zet de omgevingsvariabele `SITE_URL` op het echte domein (voor canonical-links, sitemap en deelafbeelding) en `PUBLIC_FORM_ENDPOINT` voor de formulieren.
-4. Laat een jurist de teksten in `src/content/legal/legal.ts` nalopen. Het zijn sjablonen, geen juridisch advies.
+4. Laat een jurist de teksten in `src/content/legal.ts` nalopen. Het zijn sjablonen, geen juridisch advies.
 5. Test de embeds met echte posts en controleer de cookiebanner op wat er daadwerkelijk wordt geladen.
 
 De site gaat uit van publicatie op de hoofdmap van een domein (lettertypen staan op `/fonts/...`).

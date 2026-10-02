@@ -1,4 +1,4 @@
-import { legalPages } from '../content/legal/legal';
+import { legalPages } from '../content/legal';
 
 /** Routes voor de sitemap. Nieuwe pagina? Voeg hem hier toe. */
 export const routes: { path: string; priority: number }[] = [
