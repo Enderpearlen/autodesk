@@ -1,0 +1,14 @@
+---
+import Divider from './Divider.astro';
+import Icon from './Icon.astro';
+import { copy } from '../content/copy.nl';
+---
+
+<section class="section band-dark quote-band" aria-label={copy.quote.text}>
+  <Divider shape={3} />
+  <div class="container" data-reveal>
+    <Icon class="quote-mark" name="quotes" />
+    <p class="quote-text">{copy.quote.text}</p>
+    <span class="quote-rule" aria-hidden="true"></span>
+  </div>
+</section>

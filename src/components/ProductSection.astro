@@ -24,7 +24,7 @@ const p = copy.product;
       <h2>{p.title}</h2>
       <p class="lead">{p.text}</p>
       <dl class="facts">
-        {p.facts.map((f) => (
+        {p.factsShort.map((f) => (
           <>
             <dt>{f.k}</dt>
             <dd><Rich text={f.v} /></dd>

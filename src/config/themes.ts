@@ -58,42 +58,47 @@ type Theme = {
 
 const p = palette;
 
+/**
+ * Twee vaste UI-sets. Alleen het licht of donker van de pagina verschilt, de merkkleuren (espresso,
+ * terracotta, goud) en de knoppen blijven overal gelijk. Het moment van de dag bepaalt alleen de
+ * beelden: hero, zon of maan, footer en productbeeld (zie `art` hieronder).
+ */
+export const gold = '#C9A24B';
+const light = {
+  scheme: 'light' as const,
+  bg: p.creme, fg: p.esp, muted: '#5A4636', accent: p.terraTekst, line: p.esp,
+  band1: p.mosterd, band1Fg: p.esp, band2: p.olijfDD, band2Fg: p.creme,
+  btnBg: p.esp, btnFg: p.mosterd, btnBorder: p.esp, btnShadow: p.terra,
+  field: p.wit, logo: 'espresso' as const,
+};
+const dark = {
+  scheme: 'dark' as const,
+  bg: p.esp, fg: p.creme, muted: '#CDBA9B', accent: p.mosterd, line: p.creme,
+  band1: p.mosterd, band1Fg: p.esp, band2: p.olijfDD, band2Fg: p.creme,
+  btnBg: p.mosterd, btnFg: p.esp, btnBorder: p.esp, btnShadow: p.terra,
+  field: '#3A2519', logo: 'creme' as const,
+};
+
 export const themes: Record<ThemeId, Theme> = {
   creme: {
-    label: 'Ochtend',
-    scheme: 'light',
-    bg: p.creme, fg: p.esp, muted: '#5A4636', accent: p.terraTekst, line: p.esp,
-    band1: p.olijfDD, band1Fg: p.creme, band2: p.esp, band2Fg: p.creme,
-    btnBg: p.mosterd, btnFg: p.esp, btnBorder: p.esp, btnShadow: p.esp,
-    heroFg: p.esp, heroEdge: p.creme, heroCopyBg: p.creme, field: p.wit, footerBg: p.olijfDD, footerFg: p.creme,
-    footerImage: 'creme', logo: 'espresso', product: 'creme',
+    label: 'Ochtend', ...light,
+    heroFg: p.esp, heroEdge: p.creme, heroCopyBg: p.creme, footerBg: p.olijfDD, footerFg: p.creme,
+    footerImage: 'creme', product: 'creme',
   },
   mosterd: {
-    label: 'Dag',
-    scheme: 'light',
-    bg: p.creme, fg: p.esp, muted: '#5A4636', accent: p.terraTekst, line: p.esp,
-    band1: p.mosterd, band1Fg: p.esp, band2: p.olijfDD, band2Fg: p.creme,
-    btnBg: p.esp, btnFg: p.mosterd, btnBorder: p.esp, btnShadow: p.terra,
-    heroFg: p.esp, heroEdge: p.mosterd, heroCopyBg: p.mosterd, field: p.wit, footerBg: p.olijfDD, footerFg: p.creme,
-    footerImage: 'creme', logo: 'espresso', product: 'mosterd',
+    label: 'Dag', ...light,
+    heroFg: p.esp, heroEdge: p.mosterd, heroCopyBg: p.mosterd, footerBg: p.olijfDD, footerFg: p.creme,
+    footerImage: 'creme', product: 'mosterd',
   },
   terra: {
-    label: 'Avond',
-    scheme: 'light',
-    bg: p.creme, fg: p.esp, muted: '#5A4636', accent: p.terraTekst, line: p.esp,
-    band1: p.terraDiep, band1Fg: p.wit, band2: p.esp, band2Fg: p.creme,
-    btnBg: p.mosterd, btnFg: p.esp, btnBorder: p.esp, btnShadow: p.esp,
-    heroFg: p.wit, heroEdge: p.terra, heroCopyBg: p.terraDiep, field: p.wit, footerBg: p.esp, footerFg: p.creme,
-    footerImage: 'terra', logo: 'espresso', product: 'terra',
+    label: 'Avond', ...light,
+    heroFg: p.wit, heroEdge: p.terra, heroCopyBg: p.terraDiep, footerBg: p.esp, footerFg: p.creme,
+    footerImage: 'terra', product: 'terra',
   },
   nacht: {
-    label: 'Nacht',
-    scheme: 'dark',
-    bg: p.esp, fg: p.creme, muted: '#CDBA9B', accent: p.mosterd, line: p.creme,
-    band1: p.mosterd, band1Fg: p.esp, band2: p.olijfDD, band2Fg: p.creme,
-    btnBg: p.mosterd, btnFg: p.esp, btnBorder: p.esp, btnShadow: p.terra,
-    heroFg: p.creme, heroEdge: '#2A1911', heroCopyBg: p.esp, field: '#3A2519', footerBg: p.esp, footerFg: p.creme,
-    footerImage: 'nacht', logo: 'creme', product: 'nacht',
+    label: 'Nacht', ...dark,
+    heroFg: p.creme, heroEdge: '#2A1911', heroCopyBg: p.esp, footerBg: p.esp, footerFg: p.creme,
+    footerImage: 'nacht', product: 'nacht',
   },
 };
 
@@ -101,7 +106,7 @@ export const themes: Record<ThemeId, Theme> = {
 export function themeCss(): string {
   const rows = themeIds.map((id) => {
     const t = themes[id];
-    return `html[data-theme="${id}"]{color-scheme:${t.scheme};--bg:${t.bg};--fg:${t.fg};--muted:${t.muted};--accent:${t.accent};--line:${t.line};--band1:${t.band1};--band1-fg:${t.band1Fg};--band2:${t.band2};--band2-fg:${t.band2Fg};--btn-bg:${t.btnBg};--btn-fg:${t.btnFg};--btn-border:${t.btnBorder};--btn-shadow:${t.btnShadow};--hero-fg:${t.heroFg};--hero-edge:${t.heroEdge};--hero-copy-bg:${t.heroCopyBg};--field:${t.field};--footer-bg:${t.footerBg};--footer-fg:${t.footerFg}}`;
+    return `html[data-theme="${id}"]{color-scheme:${t.scheme};--bg:${t.bg};--fg:${t.fg};--muted:${t.muted};--accent:${t.accent};--line:${t.line};--band1:${t.band1};--band1-fg:${t.band1Fg};--band2:${t.band2};--band2-fg:${t.band2Fg};--btn-bg:${t.btnBg};--btn-fg:${t.btnFg};--btn-border:${t.btnBorder};--btn-shadow:${t.btnShadow};--hero-fg:${t.heroFg};--hero-edge:${t.heroEdge};--hero-copy-bg:${t.heroCopyBg};--field:${t.field};--footer-bg:${t.footerBg};--footer-fg:${t.footerFg};--gold:${gold}}`;
   });
   return rows.join('\n');
 }

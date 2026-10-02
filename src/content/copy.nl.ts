@@ -10,7 +10,23 @@ export const copy = {
     siteName: 'Mando',
     titleSuffix: ' | Mando amaretto cola',
     defaultDescription:
-      'Mando is amaretto cola in een slank blik van 250 ml, 7% vol. Vernoemd naar mandorlo, het Italiaanse woord voor amandelboom. Alleen voor 18+.',
+      'Mando is amaretto cola in een slank blik van 250 ml, 7% vol. Vernoemd naar mandorla, het Italiaanse woord voor amandel. Alleen voor 18+.',
+  },
+
+  announcement: {
+    label: 'Mededeling',
+    close: 'Sluit mededeling',
+  },
+
+  quote: {
+    text: 'Van en voor de echte genieters',
+  },
+
+  reviews: {
+    title: 'Wat genieters zeggen',
+    note: 'Dit zijn voorbeeldreviews. Echte reviews komen na de lancering.',
+    tag: 'Voorbeeldreview',
+    outOf: 'van 5 sterren',
   },
 
   ui: {
@@ -42,12 +58,18 @@ export const copy = {
     canAlt: `${brand.product}, ${brand.volume}`,
   },
 
-  claims: ['Amaretto cola', brand.volume, brand.abv, 'Mandorlo betekent amandelboom', 'Alleen voor 18+'],
+  claims: ['Amaretto cola', brand.volume, brand.abv, 'Mandorla betekent amandel', 'Alleen voor 18+'],
 
   product: {
     title: 'Het blik',
     text: `Slank, ${brand.volume} en het lekkerst ijskoud. Amaretto en cola, zonder gedoe.`,
     factsTitle: 'In het kort',
+    /** Op de homepage alleen de korte feiten. Ingrediënten en voedingswaarde staan op de productpagina. */
+    factsShort: [
+      { k: 'Inhoud', v: brand.volume },
+      { k: 'Alcohol', v: brand.abv },
+      { k: 'Soort', v: brand.descriptor },
+    ],
     facts: [
       { k: 'Inhoud', v: brand.volume },
       { k: 'Alcohol', v: brand.abv },
@@ -60,8 +82,8 @@ export const copy = {
   },
 
   story: {
-    title: 'Mandorlo',
-    text: 'Mando komt van mandorlo, het Italiaanse woord voor amandelboom. Amandelbomen bloeien al vroeg in het jaar, tussen heuvels vol zon. Dat landschap willen we in elk blik.',
+    title: 'Mandorla',
+    text: 'Mando komt van mandorla, het Italiaanse woord voor amandel. De amandelboom bloeit al vroeg in het jaar, tussen heuvels vol zon. Dat landschap willen we in elk blik.',
     cta: 'Lees het verhaal',
   },
 
@@ -108,13 +130,13 @@ export const copy = {
     },
     story: {
       title: 'Het verhaal',
-      description: 'Mando komt van mandorlo, het Italiaanse woord voor amandelboom. Lees waar de naam en het blik vandaan komen.',
+      description: 'Mando komt van mandorla, het Italiaanse woord voor amandel. Lees waar de naam en het blik vandaan komen.',
       lead: 'Een naam met een boom erin.',
       blocks: [
         {
           h: 'Waar de naam vandaan komt',
           p: [
-            'Mando komt van mandorlo. Dat is Italiaans voor amandelboom.',
+            'Mando komt van mandorla. Dat is Italiaans voor amandel.',
             'Amaretto staat bekend om zijn amandelsmaak. Mando brengt die smaak bij elkaar met cola, in een slank blik van 250 ml.',
           ],
         },
@@ -257,7 +279,7 @@ export const copy = {
   },
 
   footer: {
-    tagline: 'Amaretto cola. Vernoemd naar de amandelboom.',
+    tagline: 'Amaretto cola. Vernoemd naar de amandel.',
     warning: `Bevat alcohol (${brand.abv}). Geniet met mate. Alleen voor 18+.`,
     rights: 'Alle rechten voorbehouden.',
     help: 'Hulp',

@@ -33,8 +33,8 @@ export const brand = {
   volume: '250 ml',
   abv: '7% vol',
   /** Betekenis van de naam. */
-  origin: 'mandorlo',
-  originMeaning: 'amandelboom',
+  origin: 'mandorla',
+  originMeaning: 'amandel',
   locale: 'nl-NL',
 };
 
@@ -81,7 +81,23 @@ export const nav = {
 export const ageGateExempt = ['/18-plus', '/leeftijd-nee', '/juridisch', '/stijlgids'];
 
 /** Volgorde van de secties op de homepage. Haal een regel weg of verplaats hem. */
-export const homeSections = ['hero', 'claims', 'product', 'story', 'where', 'community', 'newsletter'] as const;
+export const homeSections = ['hero', 'claims', 'product', 'quote', 'story', 'reviews', 'where', 'community', 'newsletter'] as const;
+
+/**
+ * Actiebar onder de header, bijvoorbeeld voor een actie of feestdag. Zet `enabled` op false om hem weg te halen.
+ * Wijzig `id` bij een nieuwe actie, dan komt de balk terug bij bezoekers die hem eerder sloten.
+ * `from` en `until` zijn data (JJJJ-MM-DD) en worden in de browser gecontroleerd, dus de balk verdwijnt ook zonder nieuwe build.
+ */
+export const announcement = {
+  enabled: true,
+  id: 'actie-1',
+  text: X('actie of feestdag, bijvoorbeeld "Kerst: gratis bezorging tot 24 december"'),
+  linkLabel: 'Bekijk' as string,
+  href: '/waar-te-koop' as string,
+  from: null as string | null,
+  until: null as string | null,
+  dismissible: true,
+};
 
 /** Socials. `url` is de profielpagina. Zolang `placeholder` true is, staat er een [X] bij. */
 export const socials = [
@@ -133,4 +149,5 @@ export const storageKeys = {
   age: 'mando_age',
   theme: 'mando-theme',
   consent: 'mando-consent',
+  bar: 'mando-bar',
 };

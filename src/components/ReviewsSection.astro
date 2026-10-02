@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+import { reviews } from '../content/reviews';
+import { copy } from '../content/copy.nl';
+const r = copy.reviews;
+---
+
+<section class="section paper reviews" id="reviews">
+  <div class="container">
+    <h2 data-reveal>{r.title}</h2>
+    <p class="muted reviews-note" data-reveal>{r.note}</p>
+    <ul class="reviews-grid">
+      {reviews.map((v, i) => (
+        <li class="review" data-reveal style={`--d:${i * 0.08}s`}>
+          <div class="stars" role="img" aria-label={`${v.stars} ${r.outOf}`}>
+            {[1, 2, 3, 4, 5].map((n) => <Icon class={n <= v.stars ? 'on' : 'off'} name="star" />)}
+          </div>
+          <blockquote>{v.text}</blockquote>
+          <p class="review-name">{v.name}</p>
+          {v.placeholder && <mark class="ph review-tag">{r.tag}</mark>}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

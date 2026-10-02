@@ -1,4 +1,5 @@
 import './theme';
+import './announcement';
 import './menu';
 import './reveal';
 import './hero';

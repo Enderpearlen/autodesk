@@ -7,6 +7,8 @@ import StorySection from '../components/StorySection.astro';
 import WhereBand from '../components/WhereBand.astro';
 import CommunitySection from '../components/CommunitySection.astro';
 import NewsletterSection from '../components/NewsletterSection.astro';
+import QuoteBand from '../components/QuoteBand.astro';
+import ReviewsSection from '../components/ReviewsSection.astro';
 import { homeSections } from '../config/site';
 
 /** Volgorde en aanwezigheid komen uit homeSections in src/config/site.ts. */
@@ -14,6 +16,8 @@ const registry = {
   hero: Hero,
   claims: Claims,
   product: ProductSection,
+  quote: QuoteBand,
+  reviews: ReviewsSection,
   story: StorySection,
   where: WhereBand,
   community: CommunitySection,

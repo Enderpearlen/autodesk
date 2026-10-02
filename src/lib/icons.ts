@@ -11,6 +11,8 @@ import arrowUpRight from '@phosphor-icons/core/assets/bold/arrow-up-right-bold.s
 import mapPin from '@phosphor-icons/core/assets/bold/map-pin-bold.svg?raw';
 import check from '@phosphor-icons/core/assets/bold/check-bold.svg?raw';
 import storefront from '@phosphor-icons/core/assets/bold/storefront-bold.svg?raw';
+import star from '@phosphor-icons/core/assets/fill/star-fill.svg?raw';
+import quotes from '@phosphor-icons/core/assets/fill/quotes-fill.svg?raw';
 
-export const icons = { instagram, tiktok, sun, moon, auto, list, x, arrowRight, arrowUpRight, mapPin, check, storefront } as const;
+export const icons = { instagram, tiktok, sun, moon, auto, list, x, arrowRight, arrowUpRight, mapPin, check, storefront, star, quotes } as const;
 export type IconName = keyof typeof icons;

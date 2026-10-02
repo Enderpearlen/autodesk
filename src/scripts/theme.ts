@@ -14,7 +14,9 @@ function updateButton() {
   const mode = (api?.getMode() ?? 'auto') as Mode;
   const theme = root.dataset.theme ?? 'mosterd';
   if (label) label.textContent = modeNames[mode];
-  btn?.setAttribute('aria-label', `Kleurthema: ${modeNames[mode]}${mode === 'auto' ? `, nu ${names[theme]}` : ''}. Klik om te wisselen.`);
+  const text = `Kleurthema: ${modeNames[mode]}${mode === 'auto' ? `, nu ${names[theme]}` : ''}. Klik om te wisselen.`;
+  btn?.setAttribute('aria-label', text);
+  btn?.setAttribute('title', text);
 }
 
 /** Laad het beeld van het doelthema eerst, zodat de wissel niet leeg flitst. */

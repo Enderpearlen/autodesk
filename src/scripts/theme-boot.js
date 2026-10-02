@@ -124,6 +124,16 @@
     return false;
   }
 
+  /* Actiebar: verberg hem vóór de eerste paint als hij gesloten is of buiten zijn datumvenster valt. */
+  (function () {
+    var bar = cfg.bar;
+    if (!bar) return;
+    var d = new Date();
+    var today = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+    var off = (bar.from && today < bar.from) || (bar.until && today > bar.until) || read((cfg.keys || {}).bar || 'mando-bar') === bar.id;
+    if (off) root.setAttribute('data-bar', 'off');
+  })();
+
   window.__mando = { resolveTheme: resolveTheme, applyTheme: applyTheme, getMode: getMode, setMode: setMode, ageOk: ageOk };
 
   applyTheme(resolveTheme(), getMode());
