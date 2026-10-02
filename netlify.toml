@@ -1,0 +1,16 @@
+# Instellingen voor Netlify. Cloudflare Pages en Vercel hebben dit bestand niet nodig:
+# bouwopdracht `npm run build`, uitvoermap `dist`, Node 22.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
+
+# Lettertypen veranderen nooit van inhoud, dus lang bewaren.
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

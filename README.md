@@ -85,6 +85,22 @@ npm run screens           # schermafbeeldingen maken, zie scripts/screens.mjs
 
 De e2e-tests draaien op desktop (1440 bij 900) en op een telefoon. Ze bouwen de site zelf en starten de voorbeeldserver. Staat Chromium op een vaste plek, zet dan `PLAYWRIGHT_BROWSERS_PATH`.
 
+## Online zetten en delen
+
+De site is statisch en gaat uit van de hoofdmap van een domein. Een host die de repo koppelt en bij elke push opnieuw bouwt is daarom het makkelijkst, en iedereen opent dan gewoon één link. Voorbeeld met Netlify (gratis):
+
+1. Maak een account op netlify.com en kies "Add new site", dan "Import an existing project" en GitHub.
+2. Kies de repo `autodesk` en de branch die je wilt tonen. De instellingen komen uit `netlify.toml` (bouwopdracht `npm run build`, map `dist`, Node 22).
+3. Klik op Deploy. Na een minuut staat er een adres als `iets.netlify.app`. Onder Site configuration kun je de naam aanpassen. Stuur dat adres naar je mede-eigenaren.
+
+Cloudflare Pages en Vercel werken op dezelfde manier en hebben een Astro-voorinstelling (bouwopdracht `npm run build`, uitvoermap `dist`). Zonder koppeling kan het ook: draai `npm run build` en sleep de map `dist` naar app.netlify.com/drop. Je moet dan bij elke wijziging opnieuw uploaden.
+
+Staat de branch niet op `main`, kies dan in de host die branch of voeg hem later samen met `main`. Netlify geeft het adres zelf door aan de site (`URL` en `DEPLOY_PRIME_URL`), dus de deelafbeelding in WhatsApp werkt zonder extra instelling. Zet voor een eigen domein `SITE_URL` op dat domein.
+
+GitHub Pages is hier minder geschikt: een projectsite staat op `gebruiker.github.io/autodesk/`, een subpad, en daar zijn links en beelden niet op gebouwd. Het kan met een eigen domein op de hoofdmap.
+
+Zolang `features.indexable` op `false` staat, staat de site voor zoekmachines dicht. Wie het adres heeft kan hem wel openen, dus deel het alleen met wie hem mag zien.
+
 ## Live zetten
 
 1. Vul alle placeholders in en draai `npm run check:live` tot hij slaagt.
