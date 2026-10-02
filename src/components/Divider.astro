@@ -1,0 +1,7 @@
+---
+import { dividers } from '../config/visuals';
+interface Props { shape?: number }
+const { shape = 0 } = Astro.props;
+const d = dividers[shape % dividers.length];
+---
+<span class="divider" aria-hidden="true" style={`--mask:url(${d.src})`}></span>

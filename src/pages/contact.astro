@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Icon from '../components/Icon.astro';
+import Rich from '../components/Rich.astro';
+import Sticker from '../components/Sticker.astro';
+import { copy } from '../content/copy.nl';
+import { company, socials } from '../config/site';
+
+const c = copy.pages.contact;
+---
+
+<Base title={c.title} description={c.description}>
+  <PageHeader tone="terra" title={c.title} />
+  <section class="section paper">
+    <div class="container split" style="align-items:start">
+      <div class="stack" data-reveal>
+        <p class="lead">{c.lead}</p>
+        <ContactForm />
+      </div>
+      <div class="stack" data-reveal style="--d:.1s; position:relative">
+        <h2 style="font-size:1.6rem">{c.detailsTitle}</h2>
+        <dl class="company-list">
+          <dt>Bedrijf</dt><dd><Rich text={`${company.legalName}, ${company.legalForm}`} /></dd>
+          <dt>Adres</dt><dd><Rich text={`${company.address}, ${company.postalCode}`} /></dd>
+          <dt>KvK</dt><dd><Rich text={company.kvk} /></dd>
+          <dt>Btw</dt><dd><Rich text={company.vat} /></dd>
+          <dt>E-mail</dt><dd><Rich text={company.email} /></dd>
+          <dt>Telefoon</dt><dd><Rich text={company.phone} /></dd>
+          <dt>Reactie</dt><dd><Rich text={company.responseTime} /></dd>
+        </dl>
+        <div class="btn-row">
+          {socials.map((s) => (
+            <a class="btn btn--small btn--ghost" href={s.url} target="_blank" rel="noopener noreferrer"><Icon name={s.id} /> {s.label}</a>
+          ))}
+        </div>
+        <Sticker name="embleem" size={140} sizeSm={80} rotate={8} style="right:0;bottom:-70px" />
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Divider from '../components/Divider.astro';
+import Sticker from '../components/Sticker.astro';
+import Rich from '../components/Rich.astro';
+import { copy } from '../content/copy.nl';
+import { can } from '../config/visuals';
+
+const s = copy.pages.story;
+const [b1, b2, b3] = s.blocks;
+---
+
+<Base title={s.title} description={s.description}>
+  <PageHeader tone="terra" title={s.title} />
+  <section class="story section" style="min-height:clamp(520px,52vw,760px)">
+    <div class="container">
+      <div class="story-copy stack" data-reveal>
+        <p class="lead">{s.lead}</p>
+        <h2>{b1.h}</h2>
+        {b1.p.map((t) => <p><Rich text={t} /></p>)}
+      </div>
+    </div>
+    <Sticker name="zon" size={170} sizeSm={90} rotate={-6} style="right:6%;top:8%" />
+  </section>
+  <section class="section paper">
+    <Divider shape={1} />
+    <div class="container split">
+      <div class="stack" data-reveal>
+        <h2>{b2.h}</h2>
+        {b2.p.map((t) => <p><Rich text={t} /></p>)}
+      </div>
+      <div class="center" data-reveal style="--d:.1s">
+        <img class="themed" data-for="creme mosterd terra" src={can.sketchDark.src} width={can.sketchDark.w} height={can.sketchDark.h} alt="Lijntekening van het Mando blik" loading="lazy" style="max-height:520px;width:auto;margin-inline:auto" />
+        <img class="themed" data-for="nacht" src={can.sketchLight.src} width={can.sketchLight.w} height={can.sketchLight.h} alt="Lijntekening van het Mando blik" loading="lazy" style="max-height:520px;width:auto;margin-inline:auto" />
+      </div>
+    </div>
+  </section>
+  <section class="section band-2">
+    <Divider shape={3} />
+    <div class="container narrow stack" data-reveal>
+      <h2>{b3.h}</h2>
+      {b3.p.map((t) => <p class="lead"><Rich text={t} /></p>)}
+      <a class="btn" href="/waar-te-koop">{s.cta}</a>
+    </div>
+    <Sticker name="boom" size={150} sizeSm={80} rotate={4} style="right:5%;bottom:-20px" />
+  </section>
+</Base>

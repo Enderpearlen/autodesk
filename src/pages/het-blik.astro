@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ProductGallery from '../components/ProductGallery.astro';
+import Rich from '../components/Rich.astro';
+import { copy } from '../content/copy.nl';
+import { brand } from '../config/site';
+import { product, can, productOrder } from '../config/visuals';
+
+const p = copy.pages.product;
+const facts = copy.product.facts;
+const ld = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: brand.product,
+    description: p.description,
+    brand: { '@type': 'Brand', name: brand.name },
+    image: productOrder.map((k) => new URL(product[k].src, Astro.site ?? 'https://www.mando-drinks.example').href),
+  },
+];
+---
+
+<Base title={p.title} description={p.description} jsonLd={ld}>
+  <PageHeader tone="mosterd" title={p.title} />
+  <section class="section paper">
+    <div class="container split split--wide-left">
+      <div data-reveal><ProductGallery /></div>
+      <div class="stack" data-reveal style="--d:.1s">
+        <div class="lead-row">
+          <p class="lead">{p.lead}</p>
+          <img class="lead-sketch themed" data-for="creme mosterd terra" src={can.sketchDark.src} width={can.sketchDark.w} height={can.sketchDark.h} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+          <img class="lead-sketch themed" data-for="nacht" src={can.sketchLight.src} width={can.sketchLight.w} height={can.sketchLight.h} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        </div>
+        <dl class="facts">
+          {facts.map((f) => (<><dt>{f.k}</dt><dd><Rich text={f.v} /></dd></>))}
+        </dl>
+        <h2 style="font-size:1.6rem">{p.serving}</h2>
+        <p><Rich text={p.servingText} /></p>
+        <h2 style="font-size:1.6rem">{p.allergens}</h2>
+        <p><Rich text={p.allergensText} /></p>
+        <p style="font-weight:700">{p.warning}</p>
+        <div class="btn-row">
+          <a class="btn" href="/waar-te-koop">{copy.product.ctaWhere}</a>
+          <a class="btn btn--ghost" href="/faq">{copy.pages.faq.title}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,40 @@
+---
+import Divider from './Divider.astro';
+import { themeIds } from '../config/themes';
+import { heroBg, heroCan, can } from '../config/visuals';
+import { copy } from '../content/copy.nl';
+import { nav } from '../config/site';
+const h = copy.hero;
+---
+
+<section class="hero-wrap" aria-labelledby="hero-title" data-hero>
+  <div class="hero">
+    <div class="hero-stage" data-hero-stage style={`--dcx:${heroCan.desktop.cx};--dcb:${heroCan.desktop.bottom};--dch:${heroCan.desktop.h};--mcx:${heroCan.mobile.cx};--mcb:${heroCan.mobile.bottom};--mch:${heroCan.mobile.h}`}>
+      {themeIds.map((t) => (
+        <picture class="themed hero-bgp" data-for={t}>
+          <source media="(max-aspect-ratio: 5/6)" srcset={heroBg[t].mobile.src} />
+          <img class="hero-bg" src={heroBg[t].desktop.src} width={heroBg[t].desktop.w} height={heroBg[t].desktop.h} alt="" aria-hidden="true" fetchpriority="high" decoding="async" loading="lazy" />
+        </picture>
+      ))}
+      <div class="hero-can" data-hero-can>
+        <div class="px">
+          <img src={can.tilt.src} width={can.tilt.w} height={can.tilt.h} alt={h.canAlt} fetchpriority="high" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-copy">
+    <Divider shape={1} />
+    <div class="container">
+      <div class="hero-copy-inner">
+        <h1 id="hero-title">{h.title}</h1>
+        <p class="hero-lead">{h.lead}</p>
+        <div class="btn-row">
+          <a class="btn" href={nav.cta.href}>{h.primary}</a>
+          <a class="btn btn--ghost" href="/het-blik">{h.secondary}</a>
+        </div>
+        <p class="hero-note">{h.note}</p>
+      </div>
+    </div>
+  </div>
+</section>

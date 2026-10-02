@@ -1,0 +1,32 @@
+---
+import { copy } from '../content/copy.nl';
+const c = copy.consent;
+---
+
+<section class="consent" data-consent role="dialog" aria-modal="false" aria-labelledby="consent-title">
+  <h2 id="consent-title">{c.title}</h2>
+  <p>{c.text} <a href="/juridisch/cookies">{c.more}</a></p>
+  <div class="consent-rows">
+    <div class="consent-row">
+      <strong id="c-necessary">{c.necessary}</strong>
+      <span>{c.necessaryText}</span>
+      <input type="checkbox" checked disabled aria-labelledby="c-necessary" />
+    </div>
+    <div class="consent-row">
+      <strong id="c-stats">{c.stats}</strong>
+      <span>{c.statsText}</span>
+      <input type="checkbox" data-consent-stats aria-labelledby="c-stats" />
+    </div>
+    <div class="consent-row">
+      <strong id="c-social">{c.social}</strong>
+      <span>{c.socialText}</span>
+      <input type="checkbox" data-consent-social aria-labelledby="c-social" />
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn--small" type="button" data-consent-accept>{c.acceptAll}</button>
+    <button class="btn btn--small btn--ghost" type="button" data-consent-reject>{c.rejectAll}</button>
+    <button class="link-button" type="button" data-consent-detail aria-expanded="false">{c.settings}</button>
+    <button class="btn btn--small" type="button" data-consent-save hidden>{c.save}</button>
+  </div>
+</section>

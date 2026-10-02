@@ -1,0 +1,98 @@
+---
+import '../styles/global.css';
+import bootScript from '../scripts/theme-boot.js?raw';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import AgeGate from '../components/AgeGate.astro';
+import ConsentBanner from '../components/ConsentBanner.astro';
+import { features, ageGateExempt, storageKeys, brand, socials } from '../config/site';
+import { themeCss, schedule } from '../config/themes';
+import { copy } from '../content/copy.nl';
+import { logo, og, story, patterns } from '../config/visuals';
+import { stripPlaceholders } from '../lib/format';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown>[];
+  /** Pagina's zonder leeftijdscontrole en cookiebanner (bijvoorbeeld de stijlgids) blijven gewoon bereikbaar. */
+  bare?: boolean;
+}
+
+const { title, description = copy.meta.defaultDescription, image, noindex = false, jsonLd = [], bare = false } = Astro.props;
+const fullTitle = title ? `${title}${copy.meta.titleSuffix}` : `${brand.product}: amandel en cola, ijskoud`;
+const site = Astro.site ?? new URL('https://www.mando-drinks.example');
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = new URL(image ?? og.src, site).href;
+const robots = !features.indexable || noindex ? 'noindex, nofollow' : 'index, follow';
+
+const cfg = {
+  schedule,
+  keys: storageKeys,
+  ageGate: features.ageGate,
+  ageGateExempt,
+  themeAuto: features.themeAuto,
+};
+
+const sameAs = socials.filter((s) => !s.placeholder).map((s) => s.url);
+const orgLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: brand.name,
+  url: site.href,
+  logo: new URL(logo.favicon.png512, site).href,
+  ...(sameAs.length ? { sameAs } : {}),
+};
+const allLd = [orgLd, ...jsonLd];
+---
+
+<!doctype html>
+<html lang="nl" data-theme="mosterd" data-theme-mode="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={stripPlaceholders(description)} />
+    <meta name="robots" content={robots} />
+    <meta name="theme-color" content="#2B1A12" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={brand.name} />
+    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={stripPlaceholders(description)} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href={logo.favicon.svg} />
+    <link rel="icon" type="image/png" sizes="32x32" href={logo.favicon.png32} />
+    <link rel="apple-touch-icon" href={logo.favicon.apple} />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preload" href="/fonts/jost-900.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/jost-400.woff2" as="font" type="font/woff2" crossorigin />
+    <style set:html={`:root{--story:url(${story.src});--strepen:url(${patterns.strepen.src});--terrazzo:url(${patterns.terrazzo.src});--amandelen:url(${patterns.amandelen.src})}\n${themeCss()}`}></style>
+    <script is:inline set:html={`window.__MANDO_CFG=${JSON.stringify(cfg)};document.documentElement.classList.add('js');`}></script>
+    <script is:inline set:html={bootScript}></script>
+    {allLd.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{copy.ui.skip}</a>
+    <div id="site-root">
+      <Header />
+      <main id="main" tabindex="-1">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+    {!bare && features.ageGate && <AgeGate />}
+    {!bare && <ConsentBanner />}
+    <noscript>
+      <p class="narrow" style="padding:1rem 0;font-weight:700">{copy.ageGate.noscript}</p>
+    </noscript>
+    <script>
+      import '../scripts/main';
+    </script>
+  </body>
+</html>

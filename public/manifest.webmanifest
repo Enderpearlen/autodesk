@@ -1,0 +1,13 @@
+{
+  "name": "Mando amaretto cola",
+  "short_name": "Mando",
+  "lang": "nl",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#2B1A12",
+  "theme_color": "#2B1A12",
+  "icons": [
+    { "src": "/visuals/logo/favicon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/visuals/logo/favicon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

@@ -1,0 +1,7 @@
+---
+import { fmt } from '../lib/format';
+interface Props { text: string; as?: string; class?: string }
+const { text, as, class: cls } = Astro.props;
+const Tag: any = as ?? 'span';
+---
+<Tag class={cls} set:html={fmt(text)} />

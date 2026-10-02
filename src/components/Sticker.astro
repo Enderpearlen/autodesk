@@ -1,0 +1,7 @@
+---
+import { stickers } from '../config/visuals';
+interface Props { name: keyof typeof stickers; size?: number; sizeSm?: number; rotate?: number; style?: string; loading?: 'lazy' | 'eager' }
+const { name, size = 120, sizeSm = 70, rotate = 0, style = '', loading = 'lazy' } = Astro.props;
+const s = stickers[name];
+---
+<img class="sticker" src={s.src} width={s.w} height={s.h} alt="" aria-hidden="true" loading={loading} decoding="async" style={`--s:${size}px;--sm:${sizeSm}px;--r:${rotate}deg;${style}`} />

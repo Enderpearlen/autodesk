@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Claims from '../components/Claims.astro';
+import ProductSection from '../components/ProductSection.astro';
+import StorySection from '../components/StorySection.astro';
+import WhereBand from '../components/WhereBand.astro';
+import CommunitySection from '../components/CommunitySection.astro';
+import NewsletterSection from '../components/NewsletterSection.astro';
+import { homeSections } from '../config/site';
+
+/** Volgorde en aanwezigheid komen uit homeSections in src/config/site.ts. */
+const registry = {
+  hero: Hero,
+  claims: Claims,
+  product: ProductSection,
+  story: StorySection,
+  where: WhereBand,
+  community: CommunitySection,
+  newsletter: NewsletterSection,
+};
+const ld = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: 'Mando', inLanguage: 'nl-NL' }];
+---
+
+<Base jsonLd={ld}>
+  {homeSections.map((id) => {
+    const Section = registry[id];
+    return <Section />;
+  })}
+</Base>

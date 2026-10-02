@@ -1,0 +1,13 @@
+---
+import Rich from './Rich.astro';
+import { faq } from '../content/faq';
+---
+
+<div class="faq">
+  {faq.map((f) => (
+    <details name="faq">
+      <summary>{f.q}</summary>
+      <div class="answer"><Rich text={f.a} as="p" /></div>
+    </details>
+  ))}
+</div>

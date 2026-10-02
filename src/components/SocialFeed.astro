@@ -1,0 +1,10 @@
+---
+import SocialEmbed from './SocialEmbed.astro';
+import { socialFeed, features } from '../config/site';
+interface Props { limit?: number }
+const { limit = socialFeed.length } = Astro.props;
+---
+
+<div class="feed" data-embeds-enabled={features.socialEmbeds ? 'true' : 'false'}>
+  {socialFeed.slice(0, limit).map((post, i) => <SocialEmbed post={post} index={i} />)}
+</div>

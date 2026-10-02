@@ -1,0 +1,46 @@
+---
+import Icon from './Icon.astro';
+import { nav, brand } from '../config/site';
+import { logo } from '../config/visuals';
+import { copy } from '../content/copy.nl';
+
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const current = (href: string) => path === href || path.startsWith(href + '/');
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="/" aria-label={copy.ui.home}>
+      <img class="logo-dark" src={logo.dark.src} alt={brand.name} width={logo.dark.w} height={logo.dark.h} />
+      <img class="logo-light" src={logo.light.src} alt="" aria-hidden="true" width={logo.light.w} height={logo.light.h} />
+    </a>
+    <nav class="nav" aria-label="Hoofdmenu">
+      <ul>
+        {nav.main.map((i) => (
+          <li><a href={i.href} aria-current={current(i.href) ? 'page' : undefined}>{i.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label={copy.ui.themeLabel}>
+        <span data-i="auto"><Icon name="auto" /></span>
+        <span data-i="dag"><Icon name="sun" /></span>
+        <span data-i="nacht"><Icon name="moon" /></span>
+        <span class="tt-label" data-theme-label>Auto</span>
+      </button>
+      <a class="btn btn--small header-cta" href={nav.cta.href}>{nav.cta.label}</a>
+      <button class="burger" type="button" data-menu-toggle aria-expanded="false" aria-controls="menu" aria-label={copy.ui.menu}>
+        <span class="i-open"><Icon name="list" /></span>
+        <span class="i-close"><Icon name="x" /></span>
+      </button>
+    </div>
+  </div>
+  <div class="menu" id="menu" data-menu role="dialog" aria-modal="true" aria-label={copy.ui.menu}>
+    <ul>
+      {nav.main.map((i) => (
+        <li><a class="menu-link" href={i.href} aria-current={current(i.href) ? 'page' : undefined}>{i.label}</a></li>
+      ))}
+    </ul>
+    <a class="btn" href={nav.cta.href}>{nav.cta.label}</a>
+  </div>
+</header>

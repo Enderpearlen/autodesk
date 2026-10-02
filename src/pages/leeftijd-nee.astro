@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { copy } from '../content/copy.nl';
+
+const a = copy.pages.ageNo;
+---
+
+<Base title={a.title} description={a.description} noindex>
+  <PageHeader tone="olijf" title={a.title} />
+  <section class="section paper">
+    <div class="container narrow stack">
+      <p class="lead">{a.text}</p>
+      <a class="btn" href="/18-plus">{a.more}</a>
+    </div>
+  </section>
+</Base>

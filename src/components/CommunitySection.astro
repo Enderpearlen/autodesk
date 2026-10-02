@@ -1,0 +1,26 @@
+---
+import Divider from './Divider.astro';
+import Icon from './Icon.astro';
+import SocialFeed from './SocialFeed.astro';
+import { socials, hashtags } from '../config/site';
+import { copy } from '../content/copy.nl';
+import Rich from './Rich.astro';
+const c = copy.community;
+---
+
+<section class="community section" id="community-kort">
+  <Divider shape={0} />
+  <div class="container">
+    <div class="stack" data-reveal>
+      <h2>{c.title}</h2>
+      <p class="lead">{c.text}</p>
+      <div class="btn-row">
+        {socials.map((s) => (
+          <a class="btn" href={s.url} target="_blank" rel="noopener noreferrer"><Icon name={s.id} /> {s.id === 'instagram' ? c.followInstagram : c.followTikTok}</a>
+        ))}
+      </div>
+    </div>
+    <SocialFeed />
+    <p style="margin-top:1.5rem"><a href="/community">{c.allPosts}</a> <Rich text={hashtags.join(' ')} /></p>
+  </div>
+</section>

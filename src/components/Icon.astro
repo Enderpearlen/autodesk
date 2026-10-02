@@ -1,0 +1,6 @@
+---
+import { icons, type IconName } from '../lib/icons';
+interface Props { name: IconName; class?: string }
+const { name, class: cls } = Astro.props;
+---
+<span class:list={['icon', cls]} aria-hidden="true" set:html={icons[name].replace('<svg', '<svg focusable="false"')}></span>

@@ -1,0 +1,30 @@
+---
+import { copy } from '../content/copy.nl';
+import { forms } from '../config/site';
+const n = copy.newsletter;
+---
+
+<form class="form" data-form="newsletter" data-endpoint={forms.endpoint} data-demo={n.demo} data-ok={n.ok} novalidate>
+  <div class="field">
+    <label for="nl-email">{n.email}</label>
+    <input id="nl-email" name="email" type="email" autocomplete="email" required aria-describedby="nl-email-err" />
+    <p class="error" id="nl-email-err" hidden></p>
+  </div>
+  <div class="field">
+    <div class="check">
+      <input id="nl-age" name="age" type="checkbox" required aria-describedby="nl-age-err" />
+      <label for="nl-age">{n.age}</label>
+    </div>
+    <p class="error" id="nl-age-err" hidden></p>
+  </div>
+  <div class="field">
+    <div class="check">
+      <input id="nl-consent" name="consent" type="checkbox" required aria-describedby="nl-consent-err" />
+      <label for="nl-consent">{n.consentPre}<a href="/juridisch/privacy">{n.consentLink}</a>{n.consentPost}</label>
+    </div>
+    <p class="error" id="nl-consent-err" hidden></p>
+  </div>
+  <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+  <p class="form-status" role="status" aria-live="polite" data-status></p>
+  <div><button class="btn" type="submit">{n.submit}</button></div>
+</form>

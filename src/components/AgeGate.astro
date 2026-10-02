@@ -1,0 +1,20 @@
+---
+import { ageGate } from '../config/visuals';
+import { copy } from '../content/copy.nl';
+---
+
+<div class="age-gate" data-age-gate role="dialog" aria-modal="true" aria-labelledby="age-title">
+  <picture>
+    <source media="(max-aspect-ratio: 5/6)" srcset={ageGate.mobile.src} />
+    <img class="age-bg" src={ageGate.desktop.src} width={ageGate.desktop.w} height={ageGate.desktop.h} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+  </picture>
+  <div class="age-panel">
+    <h2 id="age-title">{copy.ageGate.title}</h2>
+    <p>{copy.ageGate.text}</p>
+    <div class="btn-row">
+      <button class="btn" type="button" data-age-yes>{copy.ageGate.yes}</button>
+      <a class="btn btn--ghost" href="/leeftijd-nee" data-age-no>{copy.ageGate.no}</a>
+    </div>
+    <small>{copy.ageGate.remember} <a href="/18-plus">{copy.ageGate.why}</a></small>
+  </div>
+</div>

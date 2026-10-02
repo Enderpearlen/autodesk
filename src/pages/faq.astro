@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Faq from '../components/Faq.astro';
+import { copy } from '../content/copy.nl';
+import { faq } from '../content/faq';
+import { stripPlaceholders } from '../lib/format';
+
+const f = copy.pages.faq;
+const ld = [{
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: stripPlaceholders(i.a) } })),
+}];
+---
+
+<Base title={f.title} description={f.description} jsonLd={ld}>
+  <PageHeader tone="mosterd" title={f.title} />
+  <section class="section paper">
+    <div class="container narrow">
+      <p class="lead" data-reveal>{f.lead}</p>
+      <Faq />
+      <p style="margin-top:2rem"><a class="btn" href="/contact">{f.contactCta}</a></p>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,40 @@
+---
+import Divider from './Divider.astro';
+import Sticker from './Sticker.astro';
+import Rich from './Rich.astro';
+import { themeIds, themes } from '../config/themes';
+import { product } from '../config/visuals';
+import { copy } from '../content/copy.nl';
+const p = copy.product;
+---
+
+<section class="section paper" id="het-blik-kort">
+  <Divider shape={2} />
+  <div class="container split">
+    <div class="product-art" data-reveal>
+      <div class="frame">
+        {themeIds.map((t) => {
+          const img = product[themes[t].product];
+          return <img class="themed" data-for={t} src={img.src} width={img.w} height={img.h} alt={img.alt} loading="lazy" decoding="async" />;
+        })}
+      </div>
+      <Sticker name="zon" size={150} sizeSm={90} rotate={-8} style="right:-26px;top:-34px" />
+    </div>
+    <div class="stack" data-reveal style="--d:.1s">
+      <h2>{p.title}</h2>
+      <p class="lead">{p.text}</p>
+      <dl class="facts">
+        {p.facts.map((f) => (
+          <>
+            <dt>{f.k}</dt>
+            <dd><Rich text={f.v} /></dd>
+          </>
+        ))}
+      </dl>
+      <div class="btn-row">
+        <a class="btn" href="/het-blik">{p.cta}</a>
+        <a class="btn btn--ghost" href="/waar-te-koop">{p.ctaWhere}</a>
+      </div>
+    </div>
+  </div>
+</section>

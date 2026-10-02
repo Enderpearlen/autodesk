@@ -1,0 +1,22 @@
+---
+import { product, productOrder } from '../config/visuals';
+import { copy } from '../content/copy.nl';
+const g = copy.pages.product;
+const first = product[productOrder[0]];
+---
+
+<div class="gallery" data-gallery>
+  <div class="frame gallery-main">
+    <img data-gallery-main src={first.src} width={first.w} height={first.h} alt={first.alt} fetchpriority="high" decoding="async" />
+  </div>
+  <div class="thumbs" role="group" aria-label={g.galleryLabel}>
+    {productOrder.map((k, i) => {
+      const p = product[k];
+      return (
+        <button class="thumb" type="button" aria-pressed={i === 0 ? 'true' : 'false'} data-src={p.src} data-alt={p.alt} aria-label={`${g.thumb} ${i + 1}: ${p.alt}`}>
+          <img src={p.src} width={p.w} height={p.h} alt="" loading="lazy" decoding="async" />
+        </button>
+      );
+    })}
+  </div>
+</div>

@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import StoreList from '../components/StoreList.astro';
+import Rich from '../components/Rich.astro';
+import { copy } from '../content/copy.nl';
+import { banner } from '../config/visuals';
+
+const w = copy.pages.where;
+---
+
+<Base title={w.title} description={w.description}>
+  <PageHeader tone="mosterd" title={w.title} />
+  <section class="section paper">
+    <div class="container">
+      <div class="frame where-frame" data-reveal>
+        <img class="where-img" src={banner.composite.src} width={banner.composite.w} height={banner.composite.h} alt={banner.composite.alt} loading="eager" decoding="async" style="background:#E2AF3A" />
+      </div>
+      <p class="lead" data-reveal>{w.lead}</p>
+      <p><Rich text={copy.where.online} /></p>
+      <StoreList />
+      <p class="muted" style="margin-top:2rem"><Rich text={w.add} /></p>
+    </div>
+  </section>
+</Base>

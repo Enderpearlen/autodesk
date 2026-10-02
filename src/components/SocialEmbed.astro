@@ -1,0 +1,21 @@
+---
+import Rich from './Rich.astro';
+import { stickers } from '../config/visuals';
+import { socials, type SocialPost } from '../config/site';
+import { copy } from '../content/copy.nl';
+interface Props { post: SocialPost; index?: number }
+const { post, index = 0 } = Astro.props;
+const profile = socials.find((s) => s.id === post.platform)!;
+const hasUrl = !!post.url;
+const e = copy.embed;
+---
+
+<div class="embed" data-embed data-platform={post.platform} data-url={post.url ?? ''} data-state="idle" id={`${post.platform}-${index}`}>
+  <img class="embed-sticker" src={stickers.embleem.src} alt="" width="72" height="72" loading="lazy" />
+  <div class="embed-platform">{profile.label}</div>
+  <p data-embed-msg>{hasUrl ? e.blocked(profile.label) : e.placeholderFor(profile.label)}</p>
+  <p class="muted" style="color:inherit;opacity:.85"><Rich text={post.caption} /></p>
+  {hasUrl && <button class="btn btn--small" type="button" data-embed-show>{e.show}</button>}
+  <a class="btn btn--small btn--ghost" href={post.url ?? profile.url} target="_blank" rel="noopener noreferrer">{e.openOn(profile.label)}</a>
+  <div class="embed-mount" data-embed-mount hidden></div>
+</div>

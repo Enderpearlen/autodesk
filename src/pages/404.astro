@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import { copy } from '../content/copy.nl';
+import { notFound } from '../config/visuals';
+
+const n = copy.pages.notFound;
+---
+
+<Base title={n.title} description={n.description} noindex>
+  <section class="section paper" style="padding-bottom:2rem">
+    <div class="container narrow stack center">
+      <h1 style="font-size:clamp(2.4rem,7vw,5rem)">{n.title}</h1>
+      <p class="lead">{n.text}</p>
+      <a class="btn" href="/">{n.cta}</a>
+    </div>
+  </section>
+  <div class="hero-404">
+    <picture>
+      <source media="(max-aspect-ratio: 5/6)" srcset={notFound.mobile.src} />
+      <img src={notFound.desktop.src} width={notFound.desktop.w} height={notFound.desktop.h} alt={notFound.desktop.alt} loading="eager" decoding="async" />
+    </picture>
+  </div>
+</Base>

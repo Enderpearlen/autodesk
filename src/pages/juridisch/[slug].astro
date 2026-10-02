@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Rich from '../../components/Rich.astro';
+import { legalPages } from '../../content/legal/legal';
+import { copy } from '../../content/copy.nl';
+
+export function getStaticPaths() {
+  return Object.values(legalPages).map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+const { page } = Astro.props;
+const l = copy.pages.legal;
+---
+
+<Base title={page.title} description={page.description}>
+  <PageHeader tone="olijf" title={page.title} />
+  <section class="section paper">
+    <div class="container narrow prose">
+      <p class="draft-note">{l.draftNote}</p>
+      <p class="page-meta">{l.updated}: <Rich text={page.updated} /></p>
+      <p class="lead">{page.intro}</p>
+      {page.sections.map((s) => (
+        <section>
+          <h2>{s.h}</h2>
+          {s.p?.map((t) => <p><Rich text={t} /></p>)}
+          {s.list && <ul>{s.list.map((t) => <li><Rich text={t} /></li>)}</ul>}
+          {s.table && (
+            <div class="table-wrap" role="region" aria-label={s.h} tabindex="0">
+              <table>
+                <thead><tr>{s.table.head.map((h) => <th scope="col">{h}</th>)}</tr></thead>
+                <tbody>{s.table.rows.map((r) => <tr>{r.map((c, i) => (i === 0 ? <th scope="row" style="background:transparent;color:inherit;text-transform:none;letter-spacing:0;font-size:1rem"><Rich text={c} /></th> : <td><Rich text={c} /></td>))}</tr>)}</tbody>
+              </table>
+            </div>
+          )}
+        </section>
+      ))}
+      {page.slug === 'cookies' && <p><button class="btn" type="button" data-consent-open>{copy.consent.settings}</button></p>}
+    </div>
+  </section>
+</Base>

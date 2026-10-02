@@ -1,0 +1,83 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Divider from '../components/Divider.astro';
+import { catalogue, logo, dividers } from '../config/visuals';
+import { palette, themeIds, themes } from '../config/themes';
+import { copy } from '../content/copy.nl';
+import { features, homeSections } from '../config/site';
+
+const g = copy.pages.styleguide;
+---
+
+<Base title={g.title} description={g.description} noindex bare>
+  <PageHeader tone="olijf" title={g.title} />
+  <section class="section paper">
+    <div class="container stack">
+      <h2>Thema's</h2>
+      <p>Het thema volgt automatisch de zon. Forceer een thema voor een voorbeeld met een link, of gebruik de knop in de header (Auto, Dag, Nacht).</p>
+      <div class="btn-row">
+        {themeIds.map((t) => <a class="btn btn--small btn--ghost" href={`?theme=${t}`}>{themes[t].label} ({t})</a>)}
+      </div>
+
+      <h2 style="margin-top:2rem">Kleuren</h2>
+      <div class="swatches">
+        {Object.entries(palette).map(([name, hex]) => (
+          <div class="swatch"><i style={`background:${hex}`}></i><span>{name} {hex}</span></div>
+        ))}
+      </div>
+
+      <h2 style="margin-top:2rem">Typografie</h2>
+      <p style="font-size:clamp(2.4rem,6vw,4.5rem);font-weight:900;text-transform:uppercase;line-height:.98;margin:0">Kop 1, Jost 900</p>
+      <h2>Kop 2</h2>
+      <h3>Kop 3</h3>
+      <p class="lead">Lead tekst, Jost 500. Amandel en cola, ijskoud.</p>
+      <p>Lopende tekst, Jost 400. Een <a href="#">link</a> en een <mark class="ph">[X: placeholder]</mark> die nog ingevuld moet worden.</p>
+
+      <h2 style="margin-top:2rem">Knoppen en velden</h2>
+      <div class="btn-row">
+        <a class="btn" href="#">Primair</a>
+        <a class="btn btn--ghost" href="#">Secundair</a>
+        <a class="btn btn--small" href="#">Klein</a>
+        <button class="btn" type="button" disabled>Uitgeschakeld</button>
+        <button class="chip" type="button" aria-pressed="true">Chip aan</button>
+        <button class="chip" type="button" aria-pressed="false">Chip uit</button>
+      </div>
+      <div class="form" style="max-width:420px">
+        <div class="field"><label for="sg-a">Tekstveld</label><input id="sg-a" type="text" value="Voorbeeld" /></div>
+        <div class="field"><label for="sg-b">Veld met fout</label><input id="sg-b" type="email" aria-invalid="true" /><p class="error">Vul een geldig e-mailadres in.</p></div>
+      </div>
+
+      <h2 style="margin-top:2rem">Delers</h2>
+      <p>Alle vijf de vormen, als masker in de kleur van de sectie eronder.</p>
+    </div>
+    {dividers.map((_, i) => (
+      <div class="band-1" style="position:relative;margin-top:clamp(50px,8vw,120px);padding:2rem 0"><Divider shape={i} /><div class="container">Sectie met deler {i + 1}</div></div>
+    ))}
+  </section>
+  <section class="section paper">
+    <div class="container stack">
+      <h2>Logo</h2>
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;align-items:center">
+        <img src={logo.dark.src} alt="Mando logo, donker" width="240" height="60" style="background:#EFE3C8;padding:1rem" />
+        <img src={logo.light.src} alt="Mando logo, licht" width="240" height="60" style="background:#2B1A12;padding:1rem" />
+      </div>
+      <h2 style="margin-top:2rem">Beeldregister</h2>
+      <p>Alles hieronder komt uit <code>src/config/visuals.ts</code>. Pad, afmeting en gebruik staan bij elk beeld.</p>
+      <p>Vlaggen: {Object.entries(features).map(([k, v]) => `${k}=${JSON.stringify(v)}`).join(', ')}. Homepage: {homeSections.join(', ')}.</p>
+    </div>
+    {catalogue.map((grp) => (
+      <div class="container" style="margin-top:2.5rem">
+        <h3>{grp.group}</h3>
+        <div class="catalog">
+          {grp.items.map((it) => (
+            <figure>
+              <img src={it.src} width={it.w} height={it.h} alt="" loading="lazy" decoding="async" />
+              <figcaption>{it.src.replace(/^.*visuals\//, '')}<br />{it.w}×{it.h}<br />{it.usedOn}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+</Base>

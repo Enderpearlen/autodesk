@@ -1,0 +1,26 @@
+{
+  "name": "mando-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Mando amaretto cola: merksite (Astro, statisch)",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1 --port 4321",
+    "check": "astro check",
+    "check:contrast": "node scripts/check-contrast.mjs",
+    "check:placeholders": "node scripts/check-placeholders.mjs",
+    "check:live": "node scripts/check-placeholders.mjs --strict",
+    "test:e2e": "playwright test",
+    "screens": "node scripts/screens.mjs"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@axe-core/playwright": "^4.13.0",
+    "@phosphor-icons/core": "^2.1.1",
+    "@playwright/test": "1.56",
+    "astro": "^5.18.2",
+    "typescript": "^5.9.3"
+  }
+}

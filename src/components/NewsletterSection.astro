@@ -1,0 +1,17 @@
+---
+import Divider from './Divider.astro';
+import NewsletterForm from './NewsletterForm.astro';
+import { copy } from '../content/copy.nl';
+const n = copy.newsletter;
+---
+
+<section class="newsletter section" id="nieuwsbrief">
+  <Divider shape={2} />
+  <div class="container narrow">
+    <div class="panel" data-reveal>
+      <h2>{n.title}</h2>
+      <p class="lead">{n.text}</p>
+      <NewsletterForm />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,16 @@
+---
+import Divider from './Divider.astro';
+import { copy } from '../content/copy.nl';
+const s = copy.story;
+---
+
+<section class="story section" id="verhaal-kort">
+  <Divider shape={3} />
+  <div class="container">
+    <div class="story-copy stack" data-reveal>
+      <h2>{s.title}</h2>
+      <p class="lead">{s.text}</p>
+      <a class="btn" href="/verhaal">{s.cta}</a>
+    </div>
+  </div>
+</section>
