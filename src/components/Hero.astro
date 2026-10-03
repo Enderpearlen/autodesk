@@ -3,11 +3,10 @@ import Divider from './Divider.astro';
 import { themeIds } from '../config/themes';
 import { heroBg, heroCan, can } from '../config/visuals';
 import { copy } from '../content/copy.nl';
-import { nav } from '../config/site';
 const h = copy.hero;
 ---
 
-<section class="hero-wrap" aria-labelledby="hero-title" data-hero>
+<section class="hero-wrap gf" aria-labelledby="hero-title" data-hero>
   <div class="hero">
     <div class="hero-stage" data-hero-stage style={`--dcx:${heroCan.desktop.cx};--dcb:${heroCan.desktop.bottom};--dch:${heroCan.desktop.h};--mcx:${heroCan.mobile.cx};--mcb:${heroCan.mobile.bottom};--mch:${heroCan.mobile.h}`}>
       {themeIds.map((t) => (
@@ -30,8 +29,8 @@ const h = copy.hero;
         <h1 id="hero-title">{h.title}</h1>
         <p class="hero-lead">{h.lead}</p>
         <div class="btn-row">
-          <a class="btn" href={nav.cta.href}>{h.primary}</a>
-          <a class="btn btn--ghost" href="/het-blik">{h.secondary}</a>
+          <a class="btn" href={h.primaryHref}>{h.primary}</a>
+          <a class="btn btn--ghost" href={h.secondaryHref}>{h.secondary}</a>
         </div>
         <p class="hero-note">{h.note}</p>
       </div>

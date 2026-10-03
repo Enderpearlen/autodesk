@@ -11,8 +11,12 @@ import arrowUpRight from '@phosphor-icons/core/assets/bold/arrow-up-right-bold.s
 import mapPin from '@phosphor-icons/core/assets/bold/map-pin-bold.svg?raw';
 import check from '@phosphor-icons/core/assets/bold/check-bold.svg?raw';
 import storefront from '@phosphor-icons/core/assets/bold/storefront-bold.svg?raw';
+import megaphone from '@phosphor-icons/core/assets/bold/megaphone-simple-bold.svg?raw';
+import handshake from '@phosphor-icons/core/assets/bold/handshake-bold.svg?raw';
+import wine from '@phosphor-icons/core/assets/bold/wine-bold.svg?raw';
+import truck from '@phosphor-icons/core/assets/bold/truck-bold.svg?raw';
 import star from '@phosphor-icons/core/assets/fill/star-fill.svg?raw';
 import quotes from '@phosphor-icons/core/assets/fill/quotes-fill.svg?raw';
 
-export const icons = { instagram, tiktok, sun, moon, auto, list, x, arrowRight, arrowUpRight, mapPin, check, storefront, star, quotes } as const;
+export const icons = { instagram, tiktok, sun, moon, auto, list, x, arrowRight, arrowUpRight, mapPin, check, storefront, megaphone, handshake, wine, truck, star, quotes } as const;
 export type IconName = keyof typeof icons;

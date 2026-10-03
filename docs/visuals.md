@@ -30,6 +30,8 @@ Stijl: realistisch blik op een vlakke, retro poster-illustratie met grove korrel
 | `hero-*-mobiel.webp` | 1080×1920 | bovenste 12 procent; tekst over de zon mag |
 | `product-*.webp` | 1600×2000 | geen tekst, blik in het midden |
 | `banner-waar-te-koop.webp` | 2560×853 | links en rechts, 30 procent per kant |
+| `lineup-smaken.webp` | 2560×1100 | geen tekst, vier blikken (voor als alle smaken beschikbaar zijn) |
+| `lineup-cola.webp` | 2560×1100 | geen tekst, alleen Amaretto Cola (homepage zolang de andere smaken nog niet beschikbaar zijn) |
 | `leeftijdspoort-desktop.webp` | 1920×1080 | bovenste 15 procent en onderste 20 procent |
 | `leeftijdspoort-mobiel.webp` | 1080×1920 | bovenste 12 procent en onderste 25 procent |
 | `404-desktop.webp` | 2048×1152 | midden boven, naast de zon |
@@ -66,6 +68,6 @@ De onderrand van de footers is één egale kleur over de onderste ongeveer 15 pr
 
 ## Status
 
-Versie 2. Het blik komt uit Jarno's eigen ontwerp (screenshot van 662 px), met Topaz tot 1324 px opgeschaald en lokaal schoon uitgeknipt. De smaken (cassis, cola zero, ice tea) zijn digitale herkleuringen van dat blik met een nieuw etiketopschrift, een gouden kader en de zijkanttekst "Bevat geen noten, alleen amandelsmaak" (nog te bevestigen met etiket en leverancier). Het merkteken (amandel) is een schone hertekening van het amandelpatroon op het blik. Het houten vat en de aardewerken pot zijn eigen tekeningen in dezelfde vlakke stijl. Product, deelafbeelding, leeftijdscontrole en 404 hebben een gouden dubbele binnenlijn.
+Versie 2. Het blik komt uit Jarno's eigen ontwerp (screenshot van 662 px), met Topaz tot 1324 px opgeschaald en lokaal schoon uitgeknipt. De smaken (cassis, cola zero, ice tea) zijn digitale herkleuringen van dat blik met een nieuw etiketopschrift, een gouden kader en de zijkanttekst "Bevat geen noten, alleen amandelsmaak" (nog te bevestigen met etiket en leverancier). Het merkteken (amandel) is een schone hertekening van het amandelpatroon op het blik. Het houten vat en de aardewerken pot zijn eigen tekeningen in dezelfde vlakke stijl. Product, deelafbeelding, leeftijdscontrole, 404 en de hero-composities hebben een dikke gouden dubbele binnenlijn (lichtgoud met een donkere randlijn, zodat hij ook op geel zichtbaar is). Op de site staat zo'n rand ook als CSS (`gf`) om de hero, paginakoppen en banners.
 
 Nog te doen met de beeldgenerator of fotografie: echte productfoto's per smaak, een rijkere set achtergronden en een macro van de bovenkant van het blik.

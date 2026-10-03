@@ -1,34 +1,32 @@
 ---
 import Sticker from './Sticker.astro';
-import { lineup } from '../config/visuals';
-import { products } from '../content/products';
+import FlavourTile from './FlavourTile.astro';
+import { lineup, lineupCola } from '../config/visuals';
+import { products, availableProducts, allAvailable } from '../content/products';
 import { copy } from '../content/copy.nl';
 const f = copy.flavours;
+/** Zolang niet alle smaken te koop zijn, staat er alleen Amaretto Cola groot in beeld en zijn de rest verduisterde tegels. */
+const banner = allAvailable ? lineup : lineupCola;
+const first = availableProducts[0];
 ---
 
 <section class="section paper feature" id="smaken">
   <div class="container feature-grid">
     <div class="feature-copy stack" data-reveal>
       <p class="kicker">{f.kicker}</p>
-      <h2>{f.title}</h2>
-      <p class="lead">{f.text}</p>
-      <a class="btn btn--ghost" href="/het-blik">{f.cta}</a>
+      <h2>{allAvailable ? f.title : f.titleSoon}</h2>
+      <p class="lead">{allAvailable ? f.text : f.textSoon}</p>
+      {first && <a class="btn btn--ghost" href={`/het-blik/${first.slug}`}>{f.cta}</a>}
     </div>
-    <div class="feature-media" data-reveal style="--d:.1s">
-      <img src={lineup.src} width={lineup.w} height={lineup.h} alt={lineup.alt} loading="lazy" decoding="async" />
+    <div class="feature-media gf" data-reveal style="--d:.1s">
+      <img src={banner.src} width={banner.w} height={banner.h} alt={banner.alt} loading="lazy" decoding="async" />
       <Sticker name="pot" size={130} sizeSm={72} rotate={-4} style="left:-52px;bottom:-30px" />
     </div>
   </div>
   <div class="container">
     <ul class="flavour-row">
       {products.map((p, i) => (
-        <li data-reveal style={`--d:${i * 0.06}s`}>
-          <a href={`/het-blik/${p.slug}`}>
-            <img src={p.can.src} width={p.can.w} height={p.can.h} alt="" loading="lazy" decoding="async" />
-            <span class="flavour-name">{p.name}</span>
-            <span class="flavour-link">{f.linkLabel}</span>
-          </a>
-        </li>
+        <li data-reveal style={`--d:${i * 0.06}s`}><FlavourTile product={p} /></li>
       ))}
     </ul>
   </div>

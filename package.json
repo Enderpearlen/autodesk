@@ -13,7 +13,8 @@
     "check:placeholders": "node scripts/check-placeholders.mjs",
     "check:live": "node scripts/check-placeholders.mjs --strict",
     "test:e2e": "playwright test",
-    "screens": "node scripts/screens.mjs"
+    "screens": "node scripts/screens.mjs",
+    "audit:read": "node scripts/audit-readability.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",

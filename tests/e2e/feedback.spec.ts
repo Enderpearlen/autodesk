@@ -78,3 +78,31 @@ test('de naam komt van mandorla, het Italiaanse woord voor amandel', async ({ pa
   await page.goto('/verhaal');
   expect(await page.locator('main').innerText()).not.toMatch(/mandorlo/i);
 });
+
+test('actiebar heeft de drie kleuren van de Italiaanse vlag en geen placeholder', async ({ page }) => {
+  await page.goto('/');
+  const bar = page.locator('[data-announcement]');
+  await expect(bar).toBeVisible();
+  const bg = (sel: string) => bar.locator(sel).evaluate((e) => getComputedStyle(e).backgroundColor);
+  expect(await bg('.announcement-tag')).toBe('rgb(0, 121, 59)');
+  expect(await bar.evaluate((e) => getComputedStyle(e).backgroundColor)).toBe('rgb(251, 246, 234)');
+  expect(await bg('.announcement-end')).toBe('rgb(205, 33, 42)');
+  await expect(bar.locator('mark.ph')).toHaveCount(0);
+  await expect(bar.locator('.announcement-text')).toContainText('Mando komt eraan');
+});
+
+test('lopende balk volgt het moment van de dag zoals in versie 1', async ({ page }) => {
+  const colours: Record<string, [string, string]> = {
+    creme: ['rgb(63, 74, 40)', 'rgb(239, 227, 200)'],
+    mosterd: ['rgb(227, 176, 59)', 'rgb(43, 26, 18)'],
+    terra: ['rgb(176, 73, 49)', 'rgb(255, 248, 236)'],
+    nacht: ['rgb(227, 176, 59)', 'rgb(43, 26, 18)'],
+  };
+  for (const [theme, [bg, fg]] of Object.entries(colours)) {
+    await page.goto(`/?theme=${theme}`);
+    const s = await page.locator('.claims').evaluate((e) => ({ bg: getComputedStyle(e).backgroundColor, fg: getComputedStyle(e).color }));
+    expect(s, theme).toEqual({ bg, fg });
+  }
+  const src = await page.locator('.claims-item').first().locator('img').first().getAttribute('src');
+  expect(src).toContain('amandel-claims');
+});

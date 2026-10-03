@@ -1,18 +1,20 @@
 ---
 import { banner } from '../config/visuals';
 import { copy } from '../content/copy.nl';
-import { nav } from '../config/site';
 import Divider from './Divider.astro';
 const w = copy.where;
 ---
 
-<section class="where" id="waar-te-koop-kort">
+<section class="where gf" id="waar-te-koop-kort">
   <Divider shape={4} />
   <div class="where-copy">
     <div class="container"><div class="inner stack" data-reveal>
       <h2>{w.title}</h2>
       <p>{w.text}</p>
-      <a class="btn" href={nav.cta.href}>{w.cta}</a>
+      <div class="btn-row">
+        <a class="btn" href={w.ctaHref}>{w.cta}</a>
+        <a class="btn btn--ghost" href="/waar-te-koop">{copy.pages.where.title}</a>
+      </div>
     </div></div>
   </div>
   <img class="where-img" src={banner.composite.src} width={banner.composite.w} height={banner.composite.h} alt={banner.composite.alt} loading="lazy" decoding="async" />

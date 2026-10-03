@@ -7,7 +7,7 @@ for (const width of [390, 768, 1024, 1280, 1920]) {
   test(`geen horizontale overflow op ${width}px (alle themas)`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     for (const t of ['creme', 'nacht']) {
-      for (const route of ['/', '/het-blik', '/waar-te-koop', '/contact']) {
+      for (const route of ['/', '/het-blik/amaretto-cola', '/het-blik/amaretto-cassis', '/waar-te-koop', '/contact']) {
         await page.goto(`${route}?theme=${t}`);
         const o = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth }));
         expect(o.sw, `${route} ${t} ${width}`).toBeLessThanOrEqual(o.cw + 1);

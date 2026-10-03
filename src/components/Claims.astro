@@ -4,7 +4,7 @@ import { stickers } from '../config/visuals';
 const items = copy.claims;
 ---
 
-<section class="claims band-1" aria-label="Kort over Mando">
+<section class="claims" aria-label="Kort over Mando">
   <div class="stripe" aria-hidden="true"></div>
   <div class="claims-track">
     {[0, 1].map((n) => (
@@ -12,7 +12,7 @@ const items = copy.claims;
         {items.map((t, i) => (
           <>
             <span>{t}</span>
-            <img src={i % 2 ? stickers.zon.src : stickers.amandel.src} alt="" width="40" height="40" loading="lazy" />
+            <img src={i % 2 ? stickers.zon.src : stickers.amandelClaims.src} alt="" width="40" height="40" loading="lazy" />
           </>
         ))}
       </div>

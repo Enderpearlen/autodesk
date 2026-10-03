@@ -36,6 +36,9 @@ type Theme = {
   band1Fg: string;
   band2: string;
   band2Fg: string;
+  /** Kleuren van de lopende balk onder de hero. Net als in versie 1 volgen ze het moment van de dag. */
+  claimsBg: string;
+  claimsFg: string;
   btnBg: string;
   btnFg: string;
   btnBorder: string;
@@ -82,21 +85,25 @@ const dark = {
 export const themes: Record<ThemeId, Theme> = {
   creme: {
     label: 'Ochtend', ...light,
+    claimsBg: p.olijfDD, claimsFg: p.creme,
     heroFg: p.esp, heroEdge: p.creme, heroCopyBg: p.creme, footerBg: p.olijfDD, footerFg: p.creme,
     footerImage: 'creme', product: 'creme',
   },
   mosterd: {
     label: 'Dag', ...light,
+    claimsBg: p.mosterd, claimsFg: p.esp,
     heroFg: p.esp, heroEdge: p.mosterd, heroCopyBg: p.mosterd, footerBg: p.olijfDD, footerFg: p.creme,
     footerImage: 'creme', product: 'mosterd',
   },
   terra: {
     label: 'Avond', ...light,
+    claimsBg: p.terraDiep, claimsFg: p.wit,
     heroFg: p.wit, heroEdge: p.terra, heroCopyBg: p.terraDiep, footerBg: p.esp, footerFg: p.creme,
     footerImage: 'terra', product: 'terra',
   },
   nacht: {
     label: 'Nacht', ...dark,
+    claimsBg: p.mosterd, claimsFg: p.esp,
     heroFg: p.creme, heroEdge: '#2A1911', heroCopyBg: p.esp, footerBg: p.esp, footerFg: p.creme,
     footerImage: 'nacht', product: 'nacht',
   },
@@ -106,7 +113,7 @@ export const themes: Record<ThemeId, Theme> = {
 export function themeCss(): string {
   const rows = themeIds.map((id) => {
     const t = themes[id];
-    return `html[data-theme="${id}"]{color-scheme:${t.scheme};--bg:${t.bg};--fg:${t.fg};--muted:${t.muted};--accent:${t.accent};--line:${t.line};--band1:${t.band1};--band1-fg:${t.band1Fg};--band2:${t.band2};--band2-fg:${t.band2Fg};--btn-bg:${t.btnBg};--btn-fg:${t.btnFg};--btn-border:${t.btnBorder};--btn-shadow:${t.btnShadow};--hero-fg:${t.heroFg};--hero-edge:${t.heroEdge};--hero-copy-bg:${t.heroCopyBg};--field:${t.field};--footer-bg:${t.footerBg};--footer-fg:${t.footerFg};--gold:${gold}}`;
+    return `html[data-theme="${id}"]{color-scheme:${t.scheme};--bg:${t.bg};--fg:${t.fg};--muted:${t.muted};--accent:${t.accent};--line:${t.line};--band1:${t.band1};--band1-fg:${t.band1Fg};--band2:${t.band2};--band2-fg:${t.band2Fg};--claims-bg:${t.claimsBg};--claims-fg:${t.claimsFg};--btn-bg:${t.btnBg};--btn-fg:${t.btnFg};--btn-border:${t.btnBorder};--btn-shadow:${t.btnShadow};--hero-fg:${t.heroFg};--hero-edge:${t.heroEdge};--hero-copy-bg:${t.heroCopyBg};--field:${t.field};--footer-bg:${t.footerBg};--footer-fg:${t.footerFg};--gold:${gold}}`;
   });
   return rows.join('\n');
 }

@@ -25,11 +25,11 @@ export const faq: Faq[] = [
   },
   {
     q: 'Waar kan ik Mando kopen?',
-    a: `Op de pagina Waar te koop staan de verkooppunten. Online bestellen: ${X('webshop of partner')}.`,
+    a: 'Mando is binnenkort verkrijgbaar. Op de pagina Waar te koop komen de verkooppunten te staan zodra ze bekend zijn.',
   },
   {
     q: 'Kan ik als verkooppunt Mando verkopen?',
-    a: `Ja, neem contact met ons op via het contactformulier. ${X('voorwaarden of minimale afname voor verkooppunten')}`,
+    a: `Ja, graag. Vul het formulier Voor bedrijven in op de contactpagina. ${X('voorwaarden of minimale afname voor verkooppunten')}`,
   },
   {
     q: 'Waarom vragen jullie mijn leeftijd?',

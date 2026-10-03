@@ -5,10 +5,12 @@ import ContactForm from '../components/ContactForm.astro';
 import Icon from '../components/Icon.astro';
 import Rich from '../components/Rich.astro';
 import Sticker from '../components/Sticker.astro';
+import Divider from '../components/Divider.astro';
 import { copy } from '../content/copy.nl';
 import { company, socials } from '../config/site';
 
 const c = copy.pages.contact;
+const b = c.b2b;
 ---
 
 <Base title={c.title} description={c.description}>
@@ -35,7 +37,27 @@ const c = copy.pages.contact;
             <a class="btn btn--small btn--ghost" href={s.url} target="_blank" rel="noopener noreferrer"><Icon name={s.id} /> {s.label}</a>
           ))}
         </div>
-        <Sticker name="embleem" size={140} sizeSm={80} rotate={8} style="right:0;bottom:-70px" />
+        <Sticker class="contact-emblem" name="embleem" size={140} sizeSm={80} rotate={8} style="right:0;bottom:-70px" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section band-2 b2b" id={b.id} aria-labelledby="b2b-title">
+    <Divider shape={3} />
+    <div class="container split" style="align-items:start">
+      <div class="stack" data-reveal>
+        <p class="kicker b2b-kicker">{b.kicker}</p>
+        <h2 id="b2b-title">{b.title}</h2>
+        <p class="lead">{b.lead}</p>
+        <ul class="b2b-points">
+          {b.points.map((p) => (
+            <li><Icon name={p.icon} /><span><strong>{p.h}</strong><br />{p.t}</span></li>
+          ))}
+        </ul>
+        <p><Rich text={b.note} /></p>
+      </div>
+      <div class="panel gf gf--tight" data-reveal style="--d:.1s">
+        <ContactForm variant="b2b" />
       </div>
     </div>
   </section>

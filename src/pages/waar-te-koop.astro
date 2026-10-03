@@ -1,25 +1,40 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
-import StoreList from '../components/StoreList.astro';
-import Rich from '../components/Rich.astro';
+import Icon from '../components/Icon.astro';
 import { copy } from '../content/copy.nl';
 import { banner } from '../config/visuals';
 
 const w = copy.pages.where;
+const icons = { supermarkt: 'storefront', horeca: 'wine', online: 'truck' } as const;
 ---
 
 <Base title={w.title} description={w.description}>
   <PageHeader tone="mosterd" title={w.title} />
   <section class="section paper">
     <div class="container">
-      <div class="frame where-frame" data-reveal>
+      <div class="frame where-frame gf" data-reveal>
         <img class="where-img" src={banner.composite.src} width={banner.composite.w} height={banner.composite.h} alt={banner.composite.alt} loading="eager" decoding="async" style="background:#E2AF3A" />
       </div>
       <p class="lead" data-reveal>{w.lead}</p>
-      <p><Rich text={copy.where.online} /></p>
-      <StoreList />
-      <p class="muted" style="margin-top:2rem"><Rich text={w.add} /></p>
+      <h2 class="soon-title" data-reveal>{w.soonTitle}</h2>
+      <ul class="channels">
+        {w.channels.map((ch, i) => (
+          <li class="channel" data-reveal style={`--d:${i * 0.07}s`}>
+            <span class="channel-icon"><Icon name={icons[ch.id as keyof typeof icons]} /></span>
+            <h3>{ch.name}</h3>
+            <p>{ch.text}</p>
+            <span class="channel-tag">{w.soonTag}</span>
+          </li>
+        ))}
+      </ul>
+      <div class="b2b-cta" data-reveal>
+        <div class="stack">
+          <h2>{w.b2bTitle}</h2>
+          <p>{w.b2bText}</p>
+        </div>
+        <a class="btn" href="/contact#b2b">{w.b2bCta}</a>
+      </div>
     </div>
   </section>
 </Base>

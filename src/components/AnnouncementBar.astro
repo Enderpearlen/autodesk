@@ -7,16 +7,19 @@ import { copy } from '../content/copy.nl';
 
 {announcement.enabled && (
   <aside class="announcement" data-announcement aria-label={copy.announcement.label}>
-    <div class="container announcement-inner">
-      <p>
+    <div class="announcement-inner">
+      <span class="announcement-tag"><Icon name="megaphone" /><span class="announcement-tag-text">{copy.announcement.tag}</span></span>
+      <p class="announcement-text">
         <Rich text={announcement.text} />
         {announcement.href && announcement.linkLabel && <><span class="announcement-gap"> </span><a href={announcement.href}>{announcement.linkLabel}</a></>}
       </p>
-      {announcement.dismissible && (
-        <button class="announcement-close" type="button" data-announcement-close aria-label={copy.announcement.close}>
-          <Icon name="x" />
-        </button>
-      )}
+      <span class="announcement-end">
+        {announcement.dismissible && (
+          <button class="announcement-close" type="button" data-announcement-close aria-label={copy.announcement.close}>
+            <Icon name="x" />
+          </button>
+        )}
+      </span>
     </div>
   </aside>
 )}

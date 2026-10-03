@@ -24,7 +24,7 @@ Node 22 of nieuwer. Er is geen server nodig: `dist/` kan naar elke statische hos
 | Alle beelden, alt-teksten en de plek van het blik in de hero | `src/config/visuals.ts` |
 | Alle teksten (Nederlands) | `src/content/copy.nl.ts` |
 | Veelgestelde vragen | `src/content/faq.ts` |
-| Verkooppunten | `src/content/stores.ts` |
+| Teksten van Waar te koop (binnenkort) en het B2B-blok op Contact | `src/content/copy.nl.ts` (`pages.where`, `pages.contact.b2b`) |
 | Smaken (namen, teksten, feiten, beelden per smaak) | `src/content/products.ts` |
 | Voorbeeldreviews op de homepage | `src/content/reviews.ts` |
 | Juridische teksten (privacy, cookies, voorwaarden, disclaimer, colofon) | `src/content/legal.ts` |
@@ -54,11 +54,27 @@ De startpagina volgt de lijst `homeSections` in `src/config/site.ts`. Een sectie
 
 ## Actiebar, quote en reviews
 
-Onder de header kan een actiebar staan, bijvoorbeeld voor een actie of feestdag. Hij staat in `announcement` in `src/config/site.ts`: tekst, link, `from` en `until` (JJJJ-MM-DD) en of bezoekers hem kunnen sluiten. Zet `enabled` op `false` om hem weg te halen. Wijzig `id` bij een nieuwe actie, dan komt hij terug bij bezoekers die de vorige sloten. De quote en de reviews zijn secties van de startpagina (`homeSections`). De reviews zijn voorbeelden met een zichtbare markering. Vervang ze na de lancering door echte reviews en zet `placeholder` op `false`. `npm run check:live` faalt zolang er voorbeeldreviews staan.
+Onder de header staat een actiebar in de kleuren van de Italiaanse vlag (groen, wit, rood). Hij staat in `announcement` in `src/config/site.ts`: tekst, link, `from` en `until` (JJJJ-MM-DD) en of bezoekers hem kunnen sluiten. De tekst die er nu staat ("Mando komt eraan") is tijdelijk. Vervang hem door een echte actie of feestdag en wijzig dan ook `id`, dan komt de balk terug bij bezoekers die de vorige sloten. Zet `enabled` op `false` om hem weg te halen. De quote en de reviews zijn secties van de startpagina (`homeSections`). De reviews zijn voorbeelden met een zichtbare markering. Vervang ze na de lancering door echte reviews en zet `placeholder` op `false`. `npm run check:live` faalt zolang er voorbeeldreviews staan.
+
+## Startpagina, klok en lopende balk
+
+"Het blik" is de startpagina: er is geen apart menu-item meer en `/het-blik` stuurt door naar `/`. De productpagina's blijven op `/het-blik/<naam>`. De secties en hun volgorde staan in `homeSections` (`src/config/site.ts`). De klok (`ClockSection`) kijkt eerst ("Klok aan het bekijken…") en springt na ongeveer 1,8 seconde op 17:00 ("Tijd voor Mando!"). Bij "minder beweging" in het systeem staat meteen de eindstand er. De klok valt bewust over de lopende balk erboven en de smakensectie eronder (`.clock` in `global.css`). De lopende balk volgt het moment van de dag zoals in versie 1 (`claimsBg` en `claimsFg` per thema in `src/config/themes.ts`) en gebruikt de amandel uit versie 1 (`stickers/amandel-claims.webp`).
+
+## Verkooppunten en B2B
+
+Er zijn nog geen verkooppunten. `/waar-te-koop` zegt dat Mando binnenkort verkrijgbaar is en toont drie kanalen (winkel, horeca, online) met "Binnenkort", plus een knop "Word B2B-klant". Op de startpagina staat een band met dezelfde boodschap. Die knoppen gaan naar `/contact#b2b`: een eigen blok op de contactpagina met een B2B-formulier (bedrijf, contactpersoon, e-mail, telefoon, soort bedrijf, bericht) dat dezelfde formulierdienst gebruikt als de rest en `subject: "Zakelijk (B2B)"` meestuurt. Voorwaarden voor zakelijke klanten en het B2B-e-mailadres zijn nog `[X]`. Komen er echte verkooppunten, dan zet je die op `/waar-te-koop` (de oude winkellijst met zoeken en filteren is verwijderd en staat in de git-geschiedenis).
 
 ## Smaken
 
-Er zijn vier smaken: Amaretto Cola, Cassis, Cola Zero en Ice Tea. Ze staan in `src/content/products.ts` en krijgen elk een eigen pagina op `/het-blik/<naam>`. Alcoholpercentage, ingrediënten, voedingswaarde en allergenen van de nieuwe smaken zijn nog `[X]`. De beelden per smaak staan in `src/config/visuals.ts` (`can` en `product`).
+Er zijn vier smaken: Amaretto Cola, Cassis, Cola Zero en Ice Tea. Ze staan in `src/content/products.ts` en krijgen elk een eigen pagina op `/het-blik/<naam>`. Alleen Amaretto Cola is beschikbaar (`available: true`). De andere drie staan op de homepage als verduisterd blik met een band "Binnenkort", hun pagina's tonen "Binnenkort" zonder aankoopknop en staan op noindex en niet in de sitemap. Zet `available` op `true` zodra een smaak te koop is; zodra alle vier beschikbaar zijn, toont de homepage automatisch de banner met vier blikken (`lineup`) en de kop "Vier smaken, één blik". Alcoholpercentage, ingrediënten, voedingswaarde en allergenen van de nieuwe smaken zijn nog `[X]`. De beelden per smaak staan in `src/config/visuals.ts` (`can` en `product`).
+
+## NIX18 en het logo
+
+In de footer staat een NIX18-badge die naar nix18.nl linkt (`nix18` in `src/config/site.ts`). Het officiële logo kon ik niet ophalen en de gebruiksvoorwaarden zijn niet gecontroleerd, dus er staat een neutrale tekstbadge. Zet het officiële bestand in `public/logos/`, vul `logo` in en zet `placeholder` op `false` (`npm run check:live` faalt tot dan). Het eigen logo en tabblad-icoon vervang je met één commando, zie `docs/logo-vervangen.md`.
+
+## Gouden randen
+
+Gouden dubbele randen staan op de hero, paginakoppen, de band Binnenkort verkrijgbaar, de quote, smakenbanner en formulierpanelen via de klasse `gf` (`global.css`): een lichtgouden lijn met een donkere randlijn, zodat hij ook op geel en crème zichtbaar is. In de beelden zelf (product, deelafbeelding, leeftijdspoort, 404 en de hero-composities) zit dezelfde rand ingebakken.
 
 ## Instagram en TikTok
 
@@ -89,6 +105,7 @@ npm run check:live           # faalt zolang er nog een placeholder staat
 ```bash
 npm run check             # types (astro check)
 npm run check:contrast    # tekstcontrast voor alle thema's
+npm run audit:read        # slecht leesbare tekst en tekst die over elkaar ligt, per pagina, thema en schermbreedte (site eerst bouwen en laten draaien op poort 4321)
 npm run test:e2e          # Playwright: routes, thema's, leeftijdscontrole, cookies, formulieren, layout, axe
 npm run screens           # schermafbeeldingen maken, zie scripts/screens.mjs
 ```
@@ -125,6 +142,6 @@ De site gaat uit van publicatie op de hoofdmap van een domein (lettertypen staan
 
 ## Wat nog niet af is
 
-- De webshop is niet gebouwd. De vlag `shop` en de productgegevens zijn voorbereid, maar er is geen winkelmand. Verkoop loopt via "Waar te koop".
+- De webshop is niet gebouwd. De vlag `shop` en de productgegevens zijn voorbereid, maar er is geen winkelmand. Verkoop loopt via verkooppunten; zolang die er niet zijn, via het B2B-blok op Contact.
 - Alleen Nederlands. De teksten staan in `copy.nl.ts`, zodat een tweede taalbestand erbij kan.
 - De beelden zijn lokaal samengesteld en vormen een tussenversie.

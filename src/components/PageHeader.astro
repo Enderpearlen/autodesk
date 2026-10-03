@@ -5,7 +5,7 @@ const { tone, title } = Astro.props;
 const bg = pageHeader[tone];
 ---
 
-<header class="page-header" data-tone={tone}>
+<header class="page-header gf" data-tone={tone}>
   <img class="page-header-bg" src={bg.src} width={bg.w} height={bg.h} alt="" aria-hidden="true" decoding="async" />
   <div class="container"><h1>{title}</h1></div>
 </header>

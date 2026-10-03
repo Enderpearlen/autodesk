@@ -16,6 +16,8 @@ export type Product = {
   descriptor: string;
   /** Kleur van de smaak, voor kleine accenten. */
   accent: string;
+  /** Is deze smaak te koop? Zo niet, dan tonen home en de productpagina "Binnenkort" en staat hij niet in de sitemap. */
+  available: boolean;
   can: Img;
   images: Img[];
   facts: { k: string; v: string }[];
@@ -33,26 +35,29 @@ const common = (descriptor: string, abv: string): { k: string; v: string }[] => 
 
 export const products: Product[] = [
   {
-    id: 'cola', slug: 'amaretto-cola', name: 'Amaretto Cola', short: 'Cola', accent: '#8A5A33',
+    id: 'cola', slug: 'amaretto-cola', name: 'Amaretto Cola', short: 'Cola', accent: '#8A5A33', available: true,
     tagline: 'Amandel en cola, ijskoud.', descriptor: brand.descriptor, can: can.upright,
     images: productOrder.filter((k) => ['mosterd', 'terra', 'creme', 'nacht', 'olijf'].includes(k)).map((k) => product[k]),
     facts: common(brand.descriptor, brand.abv),
   },
   {
-    id: 'cassis', slug: 'amaretto-cassis', name: 'Amaretto Cassis', short: 'Cassis', accent: '#6B2D4F',
+    id: 'cassis', slug: 'amaretto-cassis', name: 'Amaretto Cassis', short: 'Cassis', accent: '#6B2D4F', available: false,
     tagline: 'Amandel en zwarte bes.', descriptor: 'Amaretto cassis mixed drink', can: can.cassis,
     images: [product.cassis], facts: common('Amaretto cassis mixed drink', abvNew),
   },
   {
-    id: 'zero', slug: 'amaretto-cola-zero', name: 'Amaretto Cola Zero', short: 'Cola Zero', accent: '#4A4540',
+    id: 'zero', slug: 'amaretto-cola-zero', name: 'Amaretto Cola Zero', short: 'Cola Zero', accent: '#4A4540', available: false,
     tagline: `Dezelfde cola, ${X('wat Zero betekent, bijvoorbeeld zonder suiker')}.`, descriptor: 'Amaretto cola zero mixed drink', can: can.zero,
     images: [product.zero], facts: common('Amaretto cola zero mixed drink', abvNew),
   },
   {
-    id: 'icetea', slug: 'amaretto-ice-tea', name: 'Amaretto Ice Tea', short: 'Ice Tea', accent: '#6E7A3A',
+    id: 'icetea', slug: 'amaretto-ice-tea', name: 'Amaretto Ice Tea', short: 'Ice Tea', accent: '#6E7A3A', available: false,
     tagline: 'Amandel en ijsthee, voor warme dagen.', descriptor: 'Amaretto ice tea mixed drink', can: can.icetea,
     images: [product.icetea], facts: common('Amaretto ice tea mixed drink', abvNew),
   },
 ];
+
+export const availableProducts = products.filter((p) => p.available);
+export const allAvailable = availableProducts.length === products.length;
 
 export const bySlug = (slug: string) => products.find((p) => p.slug === slug);

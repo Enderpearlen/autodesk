@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import ProductGallery from '../../components/ProductGallery.astro';
 import Rich from '../../components/Rich.astro';
+import FlavourTile from '../../components/FlavourTile.astro';
 import { copy } from '../../content/copy.nl';
 import { brand } from '../../config/site';
 import { can } from '../../config/visuals';
@@ -29,12 +30,13 @@ const ld = [
 const stripX = (t: string) => t.replace(/\[X:[^\]]*\]/g, '').replace(/\s+([.,])/g, '$1').trim();
 ---
 
-<Base title={item.name} description={stripX(`${brand.name} ${item.name}: ${item.tagline} Slank blik van ${brand.volume}.`)} jsonLd={ld}>
+<Base title={item.name} description={stripX(`${brand.name} ${item.name}: ${item.tagline} Slank blik van ${brand.volume}.`)} jsonLd={item.available ? ld : []} noindex={!item.available}>
   <PageHeader tone="mosterd" title={item.name} />
   <section class="section paper">
     <div class="container split split--wide-left">
       <div data-reveal><ProductGallery images={item.images} /></div>
       <div class="stack" data-reveal style="--d:.1s">
+        {!item.available && <p class="soon-note"><span class="soon-note-tag">{copy.flavours.soon}</span> {p.soonText}</p>}
         <div class="lead-row">
           <p class="lead"><Rich text={item.tagline} /></p>
           <img class="lead-sketch themed" data-for="creme mosterd terra" src={can.sketchDark.src} width={can.sketchDark.w} height={can.sketchDark.h} alt="" aria-hidden="true" loading="lazy" decoding="async" />
@@ -49,7 +51,9 @@ const stripX = (t: string) => t.replace(/\[X:[^\]]*\]/g, '').replace(/\s+([.,])/
         <p><Rich text={p.allergensText} /></p>
         <p style="font-weight:700">{p.warning}</p>
         <div class="btn-row">
-          <a class="btn" href="/waar-te-koop">{copy.product.ctaWhere}</a>
+          {item.available
+            ? <a class="btn" href="/waar-te-koop">{copy.product.ctaWhere}</a>
+            : <a class="btn" href="/#nieuwsbrief">{p.soonCta}</a>}
           <a class="btn btn--ghost" href="/faq">{copy.pages.faq.title}</a>
         </div>
       </div>
@@ -58,14 +62,9 @@ const stripX = (t: string) => t.replace(/\[X:[^\]]*\]/g, '').replace(/\s+([.,])/
   <section class="section paper others">
     <div class="container">
       <h2 data-reveal>{copy.pages.range.others}</h2>
-      <ul class="range-mini">
+      <ul class="flavour-row flavour-row--others">
         {others.map((o) => (
-          <li data-reveal>
-            <a href={`/het-blik/${o.slug}`}>
-              <img src={o.can.src} width={o.can.w} height={o.can.h} alt="" loading="lazy" decoding="async" />
-              <span>{o.name}</span>
-            </a>
-          </li>
+          <li data-reveal><FlavourTile product={o} size="small" /></li>
         ))}
       </ul>
     </div>

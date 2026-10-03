@@ -2,43 +2,73 @@
 import { copy } from '../content/copy.nl';
 import { forms, company } from '../config/site';
 import Rich from './Rich.astro';
+interface Props { variant?: 'contact' | 'b2b' }
+const { variant = 'contact' } = Astro.props;
 const c = copy.pages.contact;
+const b = c.b2b;
+const b2b = variant === 'b2b';
+const id = b2b ? 'b' : 'c';
+const mail = b2b ? b.email : company.email;
 ---
 
-<form class="form" data-form="contact" data-endpoint={forms.endpoint} data-demo={c.demo} data-ok={c.ok} novalidate>
+<form class="form" data-form={b2b ? 'b2b' : 'contact'} data-endpoint={forms.endpoint} data-demo={c.demo} data-ok={b2b ? b.ok : c.ok} novalidate>
+  {b2b && (
+    <div class="field">
+      <label for={`${id}-company`}>{b.company}</label>
+      <input id={`${id}-company`} name="company" type="text" autocomplete="organization" required aria-describedby={`${id}-company-err`} />
+      <p class="error" id={`${id}-company-err`} hidden></p>
+    </div>
+  )}
   <div class="field">
-    <label for="c-name">{c.name}</label>
-    <input id="c-name" name="name" type="text" autocomplete="name" required aria-describedby="c-name-err" />
-    <p class="error" id="c-name-err" hidden></p>
+    <label for={`${id}-name`}>{b2b ? b.contactName : c.name}</label>
+    <input id={`${id}-name`} name="name" type="text" autocomplete="name" required aria-describedby={`${id}-name-err`} />
+    <p class="error" id={`${id}-name-err`} hidden></p>
   </div>
   <div class="field">
-    <label for="c-email">{c.email}</label>
-    <input id="c-email" name="email" type="email" autocomplete="email" required aria-describedby="c-email-err" />
-    <p class="error" id="c-email-err" hidden></p>
+    <label for={`${id}-email`}>{c.email}</label>
+    <input id={`${id}-email`} name="email" type="email" autocomplete="email" required aria-describedby={`${id}-email-err`} />
+    <p class="error" id={`${id}-email-err`} hidden></p>
   </div>
+  {b2b ? (
+    <>
+      <input type="hidden" name="subject" value="Zakelijk (B2B)" />
+      <div class="field">
+        <label for={`${id}-phone`}>{b.phone}</label>
+        <input id={`${id}-phone`} name="phone" type="text" inputmode="tel" autocomplete="tel" />
+      </div>
+      <div class="field">
+        <label for={`${id}-type`}>{b.type}</label>
+        <select id={`${id}-type`} name="type" required aria-describedby={`${id}-type-err`}>
+          {b.types.map((t) => <option value={t}>{t}</option>)}
+        </select>
+        <p class="error" id={`${id}-type-err`} hidden></p>
+      </div>
+    </>
+  ) : (
+    <div class="field">
+      <label for={`${id}-subject`}>{c.subject}</label>
+      <select id={`${id}-subject`} name="subject" required aria-describedby={`${id}-subject-err`}>
+        {c.subjects.map((s) => <option value={s}>{s}</option>)}
+      </select>
+      <p class="error" id={`${id}-subject-err`} hidden></p>
+    </div>
+  )}
   <div class="field">
-    <label for="c-subject">{c.subject}</label>
-    <select id="c-subject" name="subject" required aria-describedby="c-subject-err">
-      {c.subjects.map((s) => <option value={s}>{s}</option>)}
-    </select>
-    <p class="error" id="c-subject-err" hidden></p>
-  </div>
-  <div class="field">
-    <label for="c-message">{c.message}</label>
-    <textarea id="c-message" name="message" required aria-describedby="c-message-err"></textarea>
-    <p class="error" id="c-message-err" hidden></p>
+    <label for={`${id}-message`}>{b2b ? b.message : c.message}</label>
+    <textarea id={`${id}-message`} name="message" required aria-describedby={`${id}-message-err`}></textarea>
+    <p class="error" id={`${id}-message-err`} hidden></p>
   </div>
   <div class="field">
     <div class="check">
-      <input id="c-consent" name="consent" type="checkbox" required aria-describedby="c-consent-err" />
-      <label for="c-consent">{c.consentPre}<a href="/juridisch/privacy">{c.consentLink}</a>{c.consentPost}</label>
+      <input id={`${id}-consent`} name="consent" type="checkbox" required aria-describedby={`${id}-consent-err`} />
+      <label for={`${id}-consent`}>{c.consentPre}<a href="/juridisch/privacy">{c.consentLink}</a>{c.consentPost}</label>
     </div>
-    <p class="error" id="c-consent-err" hidden></p>
+    <p class="error" id={`${id}-consent-err`} hidden></p>
   </div>
   <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
   <p class="form-status" role="status" aria-live="polite" data-status></p>
   <div class="btn-row">
-    <button class="btn" type="submit">{copy.ui.send}</button>
-    <span class="muted"><Rich text={`${copy.forms.mailtoText}: ${company.email}`} /></span>
+    <button class="btn" type="submit">{b2b ? b.send : copy.ui.send}</button>
+    <span class="muted"><Rich text={`${copy.forms.mailtoText}: ${mail}`} /></span>
   </div>
 </form>

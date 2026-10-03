@@ -1,0 +1,24 @@
+---
+import type { Product } from '../content/products';
+import { copy } from '../content/copy.nl';
+interface Props { product: Product; size?: 'normal' | 'small' }
+const { product: p, size = 'normal' } = Astro.props;
+const f = copy.flavours;
+---
+
+{p.available ? (
+  <a class:list={['flavour-tile', size === 'small' && 'is-small']} href={`/het-blik/${p.slug}`} style={`--accent-flavour:${p.accent}`}>
+    <span class="tile-img"><img src={p.can.src} width={p.can.w} height={p.can.h} alt="" loading="lazy" decoding="async" /></span>
+    <span class="flavour-name">{p.name}</span>
+    <span class="flavour-link">{f.linkLabel}</span>
+  </a>
+) : (
+  <div class:list={['flavour-tile', 'is-soon', size === 'small' && 'is-small']} style={`--accent-flavour:${p.accent}`}>
+    <span class="tile-img">
+      <img src={p.can.src} width={p.can.w} height={p.can.h} alt="" loading="lazy" decoding="async" />
+      <span class="soon-badge">{f.soon}</span>
+    </span>
+    <span class="flavour-name">{p.name}</span>
+    <span class="flavour-note">{f.soonNote}</span>
+  </div>
+)}

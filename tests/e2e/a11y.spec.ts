@@ -4,7 +4,7 @@ import { skipOverlays, settle } from './helpers';
 
 test.beforeEach(async ({ context }) => { await skipOverlays(context); });
 
-const pages = ['/', '/het-blik', '/verhaal', '/waar-te-koop', '/community', '/faq', '/contact', '/18-plus', '/juridisch/privacy', '/juridisch/cookies'];
+const pages = ['/', '/het-blik/amaretto-cola', '/het-blik/amaretto-cassis', '/verhaal', '/waar-te-koop', '/community', '/faq', '/contact', '/18-plus', '/juridisch/privacy', '/juridisch/cookies'];
 
 for (const theme of ['mosterd', 'nacht']) {
   for (const route of pages) {

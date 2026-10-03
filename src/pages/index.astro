@@ -10,12 +10,14 @@ import CommunitySection from '../components/CommunitySection.astro';
 import NewsletterSection from '../components/NewsletterSection.astro';
 import QuoteBand from '../components/QuoteBand.astro';
 import ReviewsSection from '../components/ReviewsSection.astro';
+import ClockSection from '../components/ClockSection.astro';
 import { homeSections } from '../config/site';
 
 /** Volgorde en aanwezigheid komen uit homeSections in src/config/site.ts. */
 const registry = {
   hero: Hero,
   claims: Claims,
+  clock: ClockSection,
   product: ProductSection,
   flavours: FlavoursSection,
   quote: QuoteBand,

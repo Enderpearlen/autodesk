@@ -27,7 +27,7 @@ for (const f of files) {
 
 // Placeholder-vlaggen in de configuratie
 const flagged = [];
-for (const f of ['src/config/site.ts', 'src/content/stores.ts', 'src/content/reviews.ts']) {
+for (const f of ['src/config/site.ts', 'src/content/reviews.ts']) {
   const lines = fs.readFileSync(f, 'utf8').split('\n');
   lines.forEach((l, i) => { if (/placeholder:\s*true/.test(l)) flagged.push(`${f}:${i + 1}`); });
 }

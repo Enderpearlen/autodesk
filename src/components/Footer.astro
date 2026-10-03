@@ -1,7 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import Rich from './Rich.astro';
-import { nav, brand, company, socials } from '../config/site';
+import { nav, brand, company, socials, nix18 } from '../config/site';
 import { themes, themeIds } from '../config/themes';
 import { footer, logo } from '../config/visuals';
 import { copy } from '../content/copy.nl';
@@ -47,7 +47,14 @@ const year = new Date().getFullYear();
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-warning">{copy.footer.warning}</p>
+      <div class="footer-18">
+        <a class="nix18" href={nix18.href} target="_blank" rel="noopener noreferrer" aria-label={`${copy.footer.nix18}, ${copy.ui.opensNewTab}`}>
+          {nix18.logo
+            ? <img src={nix18.logo} alt="" width="76" height="76" loading="lazy" decoding="async" />
+            : <span class="nix18-badge" aria-hidden="true">{nix18.label}</span>}
+        </a>
+        <p class="footer-warning">{copy.footer.warning}</p>
+      </div>
       <p><Rich text={`© ${year} ${company.legalName}. ${copy.footer.rights} KvK ${company.kvk}, btw ${company.vat}.`} /></p>
     </div>
   </div>

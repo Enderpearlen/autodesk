@@ -15,15 +15,27 @@ export const copy = {
 
   announcement: {
     label: 'Mededeling',
+    tag: 'Actie',
     close: 'Sluit mededeling',
+  },
+
+  clock: {
+    watching: 'Klok aan het bekijken…',
+    time: 'Tijd voor Mando!',
+    label: 'Klok die op vijf uur springt',
+    replay: 'Kijk nog een keer',
   },
 
   flavours: {
     kicker: 'De smaken',
     title: 'Vier smaken, één blik',
+    titleSoon: 'We starten met Amaretto Cola',
     text: 'Amaretto met cola, cassis, cola zero of ice tea. Dezelfde slanke blikken van 250 ml, elk met een eigen kleur en dezelfde amandel.',
-    cta: 'Bekijk alle smaken',
+    textSoon: 'Amaretto en cola in een slank blik van 250 ml. Cassis, Cola Zero en Ice Tea volgen later.',
+    cta: 'Bekijk het blik',
     linkLabel: 'Bekijk',
+    soon: 'Binnenkort',
+    soonNote: 'Volgt later',
   },
 
   quote: {
@@ -60,8 +72,10 @@ export const copy = {
   hero: {
     title: 'Amandel en cola. Ijskoud.',
     lead: `Mando is vernoemd naar ${brand.origin}, het Italiaanse woord voor ${brand.originMeaning}. Amaretto en cola in een slank blik van ${brand.volume}.`,
-    primary: 'Waar te koop',
-    secondary: 'Het blik',
+    primary: 'Bekijk het blik',
+    primaryHref: '/het-blik/amaretto-cola',
+    secondary: 'Waar te koop',
+    secondaryHref: '/waar-te-koop',
     note: `${brand.abv}. Alleen voor 18+.`,
     canAlt: `${brand.product}, ${brand.volume}`,
   },
@@ -86,6 +100,7 @@ export const copy = {
       { k: 'Voedingswaarde', v: X('voedingswaarde per 100 ml') },
     ],
     cta: 'Bekijk het blik',
+    ctaHref: '/het-blik/amaretto-cola',
     ctaWhere: 'Waar te koop',
   },
 
@@ -96,10 +111,10 @@ export const copy = {
   },
 
   where: {
-    title: 'Waar te koop',
-    text: 'Zoek een verkooppunt bij jou in de buurt.',
-    online: `Online bestellen: ${X('webshop of partner')}`,
-    cta: 'Zoek een verkooppunt',
+    title: 'Binnenkort verkrijgbaar',
+    text: 'Mando komt in winkels en bij horeca. De eerste verkooppunten volgen. Wil je Mando zakelijk verkopen, neem dan contact met ons op.',
+    cta: 'Word B2B-klant',
+    ctaHref: '/contact#b2b',
   },
 
   community: {
@@ -125,16 +140,14 @@ export const copy = {
 
   pages: {
     range: {
-      title: 'Het blik',
-      description: `Mando amaretto in vier smaken: cola, cassis, cola zero en ice tea. Allemaal in een slank blik van ${brand.volume}.`,
-      lead: `Vier smaken, allemaal in een slank blik van ${brand.volume}.`,
-      view: 'Bekijk',
       others: 'Ook van Mando',
     },
     product: {
       title: 'Het blik',
       description: `${brand.product}: amaretto cola in een slank blik van ${brand.volume}, ${brand.abv}.`,
       lead: 'Mando Amaretto Cola. Amaretto en cola in een slank blik.',
+      soonText: 'Deze smaak komt later. We beginnen met Amaretto Cola.',
+      soonCta: 'Blijf op de hoogte',
       galleryLabel: 'Productbeelden',
       thumb: 'Toon beeld',
       serving: 'Serveren en bewaren',
@@ -168,17 +181,18 @@ export const copy = {
     },
     where: {
       title: 'Waar te koop',
-      description: 'Vind een verkooppunt van Mando amaretto cola. Filter op type en zoek op naam of plaats.',
-      lead: 'Online en in de winkel. De lijst wordt aangevuld.',
-      search: 'Zoek op naam of plaats',
-      filter: 'Type verkooppunt',
-      all: 'Alles',
-      types: { online: 'Online', supermarkt: 'Supermarkt', slijterij: 'Slijterij', horeca: 'Horeca' },
-      empty: 'Geen verkooppunten gevonden. Probeer een andere zoekterm of filter.',
-      count: (n: number) => (n === 1 ? '1 verkooppunt' : `${n} verkooppunten`),
-      route: 'Route',
-      visit: 'Website',
-      add: `Verkooppunt toevoegen of een fout melden? ${X('contactgegevens voor verkooppunten')}`,
+      description: 'Mando Amaretto Cola komt binnenkort in winkels en bij horeca. Zakelijk klant worden? Neem contact met ons op.',
+      lead: 'Mando is binnenkort verkrijgbaar. Zodra de eerste verkooppunten bekend zijn, staan ze hier.',
+      soonTitle: 'Hier komt Mando binnenkort te liggen',
+      soonTag: 'Binnenkort',
+      channels: [
+        { id: 'supermarkt', name: 'Winkel', text: 'Supermarkt en slijterij in de buurt.' },
+        { id: 'horeca', name: 'Horeca', text: 'Bar, restaurant en terras.' },
+        { id: 'online', name: 'Online', text: 'Bestellen en thuisbezorgd.' },
+      ],
+      b2bTitle: 'Verkoop jij Mando binnenkort?',
+      b2bText: 'Heb je een horecazaak, slijterij of winkel en wil je Mando in je assortiment? Neem contact met ons op.',
+      b2bCta: 'Word B2B-klant',
     },
     community: {
       title: 'Community',
@@ -195,12 +209,12 @@ export const copy = {
     },
     contact: {
       title: 'Contact',
-      description: 'Neem contact op met Mando voor vragen, samenwerking of een verkooppunt.',
-      lead: 'Een vraag, een idee of een verkooppunt? Laat het weten.',
+      description: 'Neem contact op met Mando voor vragen, samenwerking of als zakelijke klant.',
+      lead: 'Een vraag, een idee of een samenwerking? Laat het weten. Wil je Mando verkopen? Dat kan hieronder bij Voor bedrijven.',
       name: 'Naam',
       email: 'E-mailadres',
       subject: 'Onderwerp',
-      subjects: ['Vraag over het product', 'Verkooppunt of samenwerking', 'Pers', 'Iets anders'],
+      subjects: ['Vraag over het product', 'Zakelijk (B2B)', 'Pers', 'Iets anders'],
       message: 'Bericht',
       consentPre: 'Ik ga akkoord met de ',
       consentLink: 'privacyverklaring',
@@ -208,6 +222,26 @@ export const copy = {
       ok: 'Bedankt voor je bericht. We reageren zo snel mogelijk.',
       demo: 'Demo: er is nog geen formulierdienst gekoppeld, dus je bericht is niet verstuurd.',
       detailsTitle: 'Gegevens',
+      b2b: {
+        id: 'b2b',
+        kicker: 'Voor bedrijven',
+        title: 'B2B-klant worden',
+        lead: 'Wil je Mando in je zaak, bar of assortiment? Laat je gegevens achter, dan nemen we contact met je op.',
+        points: [
+          { icon: 'storefront' as const, h: 'Winkels en slijterijen', t: 'Mando in het schap.' },
+          { icon: 'handshake' as const, h: 'Horeca en evenementen', t: 'Op de kaart, achter de bar of op het terras.' },
+        ],
+        note: X('voorwaarden, minimale afname en levertijd voor zakelijke klanten'),
+        company: 'Bedrijfsnaam',
+        contactName: 'Contactpersoon',
+        phone: 'Telefoonnummer (optioneel)',
+        type: 'Soort bedrijf',
+        types: ['Horeca', 'Slijterij of winkel', 'Groothandel of distributie', 'Evenement', 'Anders'],
+        message: 'Waar ben je naar op zoek?',
+        send: 'Verstuur aanvraag',
+        email: X('B2B e-mailadres'),
+        ok: 'Bedankt voor je aanvraag. We nemen zo snel mogelijk contact met je op.',
+      },
     },
     adult: {
       title: 'Verantwoord drinken',
@@ -297,6 +331,7 @@ export const copy = {
     tagline: 'Amaretto cola. Vernoemd naar de amandel.',
     warning: `Bevat alcohol (${brand.abv}). Geniet met mate. Alleen voor 18+.`,
     rights: 'Alle rechten voorbehouden.',
+    nix18: 'NIX18, geen alcohol onder de 18',
     help: 'Hulp',
     legal: 'Juridisch',
     follow: 'Volg',

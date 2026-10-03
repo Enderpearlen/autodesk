@@ -18,20 +18,17 @@ test('productgalerij: miniatuur wisselt het hoofdbeeld', async ({ page }) => {
   expect(await main.evaluate((i: HTMLImageElement) => i.naturalWidth)).toBeGreaterThan(0);
 });
 
-test('waar te koop: filter en zoeken', async ({ page }) => {
+test('waar te koop: toont binnenkort en verwijst zakelijke klanten naar het B2B-blok op contact', async ({ page }) => {
   await page.goto('/waar-te-koop');
-  const items = page.locator('.store:visible');
-  const total = await items.count();
-  expect(total).toBeGreaterThan(4);
-  await page.getByRole('button', { name: 'Slijterij' }).click();
-  expect(await items.count()).toBe(2);
-  await expect(page.locator('[data-store-count]')).toHaveText('2 verkooppunten');
-  await page.getByRole('button', { name: 'Alles' }).click();
-  await page.locator('[data-store-search]').fill('utrecht');
-  expect(await items.count()).toBe(1);
-  await page.locator('[data-store-search]').fill('zzzz');
-  expect(await items.count()).toBe(0);
-  await expect(page.locator('[data-store-empty]')).toBeVisible();
+  await expect(page.locator('main h1')).toHaveText(/Waar te koop/i);
+  await expect(page.locator('.channel')).toHaveCount(3);
+  for (const tag of await page.locator('.channel-tag').allTextContents()) expect(tag).toBe('Binnenkort');
+  expect(await page.locator('main').innerText()).not.toMatch(/Utrecht|Rotterdam|Amsterdam/);
+  const cta = page.locator('.b2b-cta a.btn');
+  await expect(cta).toHaveAttribute('href', '/contact#b2b');
+  await cta.click();
+  await expect(page).toHaveURL(/\/contact\/?#b2b$/);
+  await expect(page.locator('#b2b')).toBeVisible();
 });
 
 test('faq: accordeon opent en sluit, schema aanwezig', async ({ page }) => {

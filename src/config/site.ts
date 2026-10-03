@@ -56,13 +56,12 @@ export const company = {
 /** Eén bron voor navigatie: header, footer en mobiel menu lezen hieruit. */
 export const nav = {
   main: [
-    { href: '/het-blik', label: 'Het blik' },
     { href: '/verhaal', label: 'Verhaal' },
     { href: '/waar-te-koop', label: 'Waar te koop' },
     { href: '/community', label: 'Community' },
     { href: '/faq', label: 'FAQ' },
   ],
-  cta: { href: '/waar-te-koop', label: 'Waar te koop' },
+  cta: { href: '/contact', label: 'Contact' },
   help: [
     { href: '/faq', label: 'Veelgestelde vragen' },
     { href: '/contact', label: 'Contact' },
@@ -77,11 +76,23 @@ export const nav = {
   ],
 };
 
+/**
+ * NIX18, geen alcohol onder de 18. Staat in de footer.
+ * Zet het officiële logo (svg of png) in public/logos, vul `logo` in (bijvoorbeeld '/logos/nix18.svg') en zet `placeholder` op false.
+ * Tot die tijd staat er een neutrale tekstbadge. Controleer de gebruiksvoorwaarden van het logo bij nix18.nl.
+ */
+export const nix18 = {
+  href: 'https://www.nix18.nl/',
+  label: 'NIX18',
+  logo: null as string | null,
+  placeholder: true,
+};
+
 /** Pagina's waar de leeftijdscontrole niet over heen ligt (juridisch en uitleg). */
 export const ageGateExempt = ['/18-plus', '/leeftijd-nee', '/juridisch', '/stijlgids'];
 
 /** Volgorde van de secties op de homepage. Haal een regel weg of verplaats hem. */
-export const homeSections = ['hero', 'claims', 'flavours', 'quote', 'story', 'reviews', 'where', 'community', 'newsletter'] as const;
+export const homeSections = ['hero', 'claims', 'clock', 'flavours', 'quote', 'story', 'reviews', 'where', 'community', 'newsletter'] as const;
 
 /**
  * Actiebar onder de header, bijvoorbeeld voor een actie of feestdag. Zet `enabled` op false om hem weg te halen.
@@ -91,9 +102,10 @@ export const homeSections = ['hero', 'claims', 'flavours', 'quote', 'story', 're
 export const announcement = {
   enabled: true,
   id: 'actie-1',
-  text: X('actie of feestdag, bijvoorbeeld "Kerst: gratis bezorging tot 24 december"'),
-  linkLabel: 'Bekijk' as string,
-  href: '/waar-te-koop' as string,
+  // Tijdelijke tekst tot er een echte actie of feestdag is. Vervang tekst, link en id zodra die er is.
+  text: 'Mando komt eraan: amandel en cola, ijskoud.',
+  linkLabel: 'Blijf op de hoogte' as string,
+  href: '/#nieuwsbrief' as string,
   from: null as string | null,
   until: null as string | null,
   dismissible: true,

@@ -64,6 +64,8 @@ export const product = {
 
 /** Alle vier de smaken naast elkaar, voor de homepage en het overzicht. */
 export const lineup = img('composities/lineup-smaken.webp', 2560, 1100, 'Vier Mando blikken naast elkaar: cola, cassis, cola zero en ice tea, tussen een houten vat en een aardewerken pot', 'Home (smaken) en Het blik (overzicht)');
+/** Alleen Amaretto Cola, voor zolang de andere smaken nog niet beschikbaar zijn. */
+export const lineupCola = img('composities/lineup-cola.webp', 2560, 1100, 'Een Mando Amaretto Cola blik voor een rode zon, tussen een houten vat en een aardewerken pot', 'Home (smaken)');
 export const productOrder: (keyof typeof product)[] = ['mosterd', 'terra', 'creme', 'nacht', 'olijf'];
 
 export const banner = {
@@ -111,7 +113,8 @@ export const patterns = {
 };
 
 export const stickers = {
-  amandel: img('stickers/amandel.webp', 600, 600, '', 'Home, claimstrook'),
+  amandel: img('stickers/amandel.webp', 600, 600, '', 'Merkteken-amandel, los gebruik'),
+  amandelClaims: img('stickers/amandel-claims.webp', 600, 600, '', 'Home, claimstrook (amandel uit versie 1)'),
   zon: img('stickers/zon-gestreept.webp', 600, 600, '', 'Home, het blik, Verhaal'),
   cipres: img('stickers/cipres.webp', 600, 600, '', 'Verhaal, Waar te koop'),
   boom: img('stickers/amandelboom.webp', 600, 600, '', 'Verhaal, Community'),
@@ -135,7 +138,7 @@ export const catalogue: { group: string; items: Img[] }[] = [
   { group: 'Hero achtergronden', items: themeIds.flatMap((t) => [heroBg[t].desktop, heroBg[t].mobile]) },
   { group: 'Blik en schetsen', items: Object.values(can) },
   { group: 'Productbeelden', items: Object.values(product) },
-  { group: 'Banner en verhaal', items: [banner.composite, banner.bg, story, lineup] },
+  { group: 'Banner en verhaal', items: [banner.composite, banner.bg, story, lineup, lineupCola] },
   { group: 'Paginakoppen', items: Object.values(pageHeader) },
   { group: 'Footers', items: Object.values(footer) },
   { group: 'Leeftijdscontrole en 404', items: [ageGate.desktop, ageGate.mobile, notFound.desktop, notFound.mobile] },

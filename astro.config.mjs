@@ -10,6 +10,8 @@ export default defineConfig({
   site,
   output: 'static',
   trailingSlash: 'ignore',
+  // Het blik is de homepage geworden. Oude links blijven werken.
+  redirects: { '/het-blik': '/' },
   build: { inlineStylesheets: 'auto' },
   devToolbar: { enabled: false },
 });
